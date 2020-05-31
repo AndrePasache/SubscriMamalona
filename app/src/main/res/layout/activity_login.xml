@@ -51,7 +51,7 @@
         android:ems="10"
         android:hint="@string/escribe_tu_usuario"
         android:inputType="textPersonName"
-        android:textColorh="#575756"
+        android:textColor="#575756"
         app:layout_constraintBottom_toTopOf="@+id/editText2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.373"
