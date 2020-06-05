@@ -29,7 +29,7 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
         spinner2 = findViewById(R.id.spinner2);
         spinner3 = findViewById(R.id.spinner3);
 
-        String[] tipo = {"suscripción","pago"};
+        String[] tipo = {"Suscripción","Pago"};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(tipo));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.spinner_est,arrayList);
         spinner.setAdapter(arrayAdapter);
@@ -39,7 +39,7 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
         ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(this,R.layout.spinner_est,arrayList2);
         spinner2.setAdapter(arrayAdapter2);
 
-        String[] ciclo = {"mensual","trimestral","semestral","anual"};
+        String[] ciclo = {"Mensual","Trimestral","Semestral","Anual"};
         ArrayList<String> arrayList3 = new ArrayList<>(Arrays.asList(ciclo));
         ArrayAdapter<String> arrayAdapter3 = new ArrayAdapter<>(this,R.layout.spinner_est,arrayList3);
         spinner3.setAdapter(arrayAdapter3);
