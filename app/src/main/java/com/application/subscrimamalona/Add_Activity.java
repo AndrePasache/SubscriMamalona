@@ -29,8 +29,8 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
         spinner2 = findViewById(R.id.spinner2);
         spinner3 = findViewById(R.id.spinner3);
 
-        String[] value = {"suscripción","pago"};
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(value));
+        String[] tipo = {"suscripción","pago"};
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(tipo));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.spinner_est,arrayList);
         spinner.setAdapter(arrayAdapter);
 
@@ -42,10 +42,10 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
         String[] ciclo = {"mensual","trimestral","semestral","anual"};
         ArrayList<String> arrayList3 = new ArrayList<>(Arrays.asList(ciclo));
         ArrayAdapter<String> arrayAdapter3 = new ArrayAdapter<>(this,R.layout.spinner_est,arrayList3);
-        spinner2.setAdapter(arrayAdapter3);
+        spinner3.setAdapter(arrayAdapter3);
 
-        bfecha = (Button)findViewById(R.id.boton_fecha);
-        efecha = (EditText)findViewById(R.id.eFecha);
+        bfecha = (Button)findViewById(R.id.bfecha);
+        efecha = (EditText)findViewById(R.id.efecha);
         bfecha.setOnClickListener(this);
         efecha.setOnClickListener(this);
     }
@@ -64,7 +64,7 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
                     efecha.setText(dayOfMonth+ " / "+(month+1)+" / "+year);
                 }
             }
-            ,dia,mes,ano);
+            ,ano,mes,dia);
             datePickerDialog.show();
         }
 

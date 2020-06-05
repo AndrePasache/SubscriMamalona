@@ -138,11 +138,12 @@
         android:id="@+id/imageView14"
         android:layout_width="37dp"
         android:layout_height="33dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView11"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.392"
         app:srcCompat="@drawable/ic_action_tipo" />
 
     <EditText
@@ -159,12 +160,12 @@
         android:textColor="@color/vino"
         android:textColorHighlight="#8C29A1EC"
         android:textColorHint="@color/vino"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.306"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.513" />
+        app:layout_constraintHorizontal_bias="0.594"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.252" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -173,16 +174,15 @@
         android:background="@drawable/estilo_spinner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.281"
-        app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.437" />
+        app:layout_constraintHorizontal_bias="0.601"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.385" />
 
     <EditText
         android:id="@+id/editText4"
         android:layout_width="127dp"
         android:layout_height="40dp"
-        android:layout_marginTop="36dp"
         android:background="@drawable/redondo2"
         android:ems="10"
         android:fontFamily="@font/biryani"
@@ -191,27 +191,30 @@
         android:text="@string/monto"
         android:textColor="@color/vino"
         android:textColorHint="@color/vino"
-        app:layout_constraintEnd_toStartOf="@+id/spinner2"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.366"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.514" />
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="80dp"
         android:layout_height="41dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginBottom="272dp"
         android:background="@drawable/estilo_spinner"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.803"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.993" />
 
     <EditText
         android:id="@+id/editText5"
         android:layout_width="229dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="48dp"
         android:background="@drawable/redondo"
         android:ems="10"
         android:fontFamily="@font/biryani"
@@ -222,43 +225,40 @@
         android:textColorHint="@color/vino"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.911" />
 
     <Spinner
         android:id="@+id/spinner3"
         android:layout_width="179dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="40dp"
         android:background="@drawable/estilo_spinner"
-        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.18"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/editText4"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.773" />
 
     <Button
-        android:id="@+id/boton_fecha"
+        android:id="@+id/bfecha"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="45dp"
         android:layout_height="43dp"
-        android:layout_marginTop="24dp"
         android:background="@drawable/boton_fecha"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toEndOf="@+id/eFecha"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2"
-        app:layout_constraintVertical_bias="0.019" />
+        app:layout_constraintHorizontal_bias="0.773"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.642" />
 
     <EditText
-        android:id="@+id/eFecha"
+        android:id="@+id/efecha"
         android:layout_width="156dp"
         android:layout_height="43dp"
-        android:layout_marginTop="28dp"
         android:background="@drawable/redondo3"
         android:ems="10"
         android:fontFamily="@font/biryani"
@@ -266,9 +266,11 @@
         android:paddingHorizontal="15dp"
         android:text="Fecha de pago"
         android:textColor="@color/vino"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.641" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

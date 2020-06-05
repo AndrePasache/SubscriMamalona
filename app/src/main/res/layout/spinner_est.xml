@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    android:textColor="@color/vino">
+    android:layout_width="105dp"
+    android:layout_height="30dp"
+    android:paddingHorizontal="0dp"
+    android:fontFamily="@font/biryani"
+    android:textColor="@color/vino"
+    android:textSize="18sp">>
 </TextView>

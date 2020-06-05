@@ -3,6 +3,7 @@ package com.application.subscrimamalona;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         pagerAdapter = new PagerController(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
+        {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
@@ -65,5 +67,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void Anadir(View view){
+        Intent anadir = new Intent(this, Add_Activity.class);
+        startActivity(anadir);
     }
 }
