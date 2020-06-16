@@ -3,6 +3,7 @@ package com.application.subscrimamalona;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,8 +18,8 @@ import java.util.Calendar;
 
 public class Add_Activity extends AppCompatActivity implements View.OnClickListener {
     Spinner spinner, spinner2, spinner3;
-    Button bfecha;
-    EditText efecha;
+    Button bfecha, close, agregar;
+    EditText efecha, Subsname, Monto, MetodoPago;
     private int dia, mes, ano;
 
     @Override
@@ -48,6 +49,20 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
         efecha = (EditText)findViewById(R.id.efecha);
         bfecha.setOnClickListener(this);
         efecha.setOnClickListener(this);
+
+        close = (Button)findViewById(R.id.buttoncross);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Volver(v);
+            }
+        });
+
+        agregar = (Button)findViewById(R.id.buttonAdd);
+
+        Subsname = findViewById(R.id.editText3);
+        Monto = findViewById(R.id.editText4);
+        MetodoPago = findViewById(R.id.editText5);
     }
 
     @Override
@@ -68,5 +83,13 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
             datePickerDialog.show();
         }
 
+        if(v.getId()==R.id.buttonAdd){
+            String SubsName = editText3.getText().toString();
+
+        }
+    }
+    public void Volver(View view){
+        Intent volver = new Intent(this,MainActivity.class);
+        startActivity(volver);
     }
 }
