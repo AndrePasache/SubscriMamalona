@@ -3,7 +3,7 @@
     android:layout_width="105dp"
     android:layout_height="30dp"
     android:paddingHorizontal="0dp"
-    android:fontFamily="@font/biryani"
+    android:fontFamily="@font/biryani_semibold"
     android:textColor="@color/vino"
     android:textSize="18sp">>
 </TextView>

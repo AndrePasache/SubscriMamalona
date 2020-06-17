@@ -14,6 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/cross"
+        android:onClick="Volver"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,10 +24,10 @@
         android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.555"
+        app:layout_constraintVertical_bias="0.55"
         app:srcCompat="@drawable/ic_action_calendario" />
 
     <ImageView
@@ -35,10 +36,10 @@
         android:layout_height="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685"
+        app:layout_constraintVertical_bias="0.3"
         app:srcCompat="@drawable/ic_action_ciclo" />
 
     <ImageView
@@ -47,22 +48,22 @@
         android:layout_height="39dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42"
+        app:layout_constraintVertical_bias="0.412"
         app:srcCompat="@drawable/ic_action_dolar" />
 
     <ImageView
         android:id="@+id/imageView12"
-        android:layout_width="33dp"
-        android:layout_height="28dp"
+        android:layout_width="37dp"
+        android:layout_height="33dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.175"
+        app:layout_constraintVertical_bias="0.179"
         app:srcCompat="@drawable/ic_action_t" />
 
     <ImageView
@@ -71,32 +72,32 @@
         android:layout_height="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819"
+        app:layout_constraintVertical_bias="0.806"
         app:srcCompat="@drawable/ic_action_tarj" />
 
     <ImageView
         android:id="@+id/imageView14"
-        android:layout_width="35dp"
-        android:layout_height="38dp"
+        android:layout_width="37dp"
+        android:layout_height="39dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.293"
+        app:layout_constraintVertical_bias="0.677"
         app:srcCompat="@drawable/ic_action_tipo" />
 
     <EditText
         android:id="@+id/editText3"
         style="@style/Widget.AppCompat.EditText"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:background="@drawable/redondo"
+        android:layout_width="256dp"
+        android:layout_height="55dp"
+
         android:ems="10"
-        android:fontFamily="@font/biryani"
+        android:fontFamily="@font/biryani_semibold"
         android:hint="@string/t_tulo"
         android:inputType="textPersonName"
         android:paddingHorizontal="15dp"
@@ -112,23 +113,23 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
+        android:layout_width="279dp"
+        android:layout_height="42dp"
         android:background="@drawable/estilo_spinner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.664"
+        app:layout_constraintHorizontal_bias="0.651"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.686" />
+        app:layout_constraintVertical_bias="0.677" />
 
     <EditText
         android:id="@+id/editText4"
-        android:layout_width="135dp"
-        android:layout_height="40dp"
-        android:background="@drawable/redondo"
+        android:layout_width="122dp"
+        android:layout_height="51dp"
+
         android:ems="10"
-        android:fontFamily="@font/biryani"
+        android:fontFamily="@font/biryani_semibold"
         android:hint="@string/monto"
         android:inputType="numberDecimal"
         android:paddingHorizontal="15dp"
@@ -136,30 +137,30 @@
         android:textColorHint="@color/vino"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.387"
+        app:layout_constraintHorizontal_bias="0.359"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42" />
+        app:layout_constraintVertical_bias="0.416" />
 
     <Spinner
         android:id="@+id/spinner2"
-        android:layout_width="106dp"
-        android:layout_height="40dp"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
         android:background="@drawable/estilo_spinner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintHorizontal_bias="0.832"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.42" />
 
     <EditText
         android:id="@+id/editText5"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:background="@drawable/redondo"
+        android:layout_width="255dp"
+        android:layout_height="46dp"
+
         android:ems="10"
-        android:fontFamily="@font/biryani"
+        android:fontFamily="@font/biryani_semibold"
         android:hint="@string/metodo"
         android:inputType="textPersonName"
         android:paddingHorizontal="15dp"
@@ -170,19 +171,19 @@
         app:layout_constraintHorizontal_bias="0.67"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819" />
+        app:layout_constraintVertical_bias="0.81" />
 
     <Spinner
         android:id="@+id/spinner3"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
+        android:layout_width="276dp"
+        android:layout_height="56dp"
         android:background="@drawable/estilo_spinner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.668"
+        app:layout_constraintHorizontal_bias="0.656"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintVertical_bias="0.29000002" />
 
     <Button
         android:id="@+id/bfecha"
@@ -192,18 +193,17 @@
         android:background="@drawable/boton_fecha"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.554" />
 
     <EditText
         android:id="@+id/efecha"
-        android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:background="@drawable/redondo"
+        android:layout_width="203dp"
+        android:layout_height="54dp"
         android:ems="10"
-        android:fontFamily="@font/biryani"
+        android:fontFamily="@font/biryani_semibold"
         android:hint="Fecha de pago"
         android:inputType="textPersonName"
         android:paddingHorizontal="15dp"
@@ -211,15 +211,15 @@
         android:textColorHint="@color/vino"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.554" />
+        app:layout_constraintVertical_bias="0.55" />
 
     <Button
         android:id="@+id/buttonAdd"
-        android:layout_width="291dp"
-        android:layout_height="36dp"
+        android:layout_width="306dp"
+        android:layout_height="37dp"
         android:background="@drawable/addboton"
 
         app:layout_constraintBottom_toBottomOf="parent"

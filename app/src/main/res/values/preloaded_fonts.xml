@@ -2,9 +2,13 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/alegreya_sans</item>
+        <item>@font/allan_bold</item>
+        <item>@font/averia_libre_bold_italic</item>
         <item>@font/biryani</item>
         <item>@font/biryani_semibold</item>
         <item>@font/cantarell_bold</item>
+        <item>@font/oleo_script_bold</item>
+        <item>@font/satisfy</item>
         <item>@font/yantramanav</item>
     </array>
 </resources>

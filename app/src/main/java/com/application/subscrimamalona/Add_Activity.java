@@ -83,10 +83,8 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
             datePickerDialog.show();
         }
 
-        if(v.getId()==R.id.buttonAdd){
-            String SubsName = editText3.getText().toString();
 
-        }
+
     }
     public void Volver(View view){
         Intent volver = new Intent(this,MainActivity.class);

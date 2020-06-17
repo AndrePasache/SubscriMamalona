@@ -5,8 +5,9 @@
     <string name="escribe_tu_contrase_a">Escribe tu contraseña</string>
     <string name="contrase_a">Contraseña</string>
     <string name="usuario">Usuario</string>
+    <string name="repetir_contra">Repetir contraseña</string>
     <string name="textDefault">Todavía nada por aquí</string>
-
+    <string name="registro">Regístrate para un mejor control de tus suscripciones y pagos</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -15,5 +16,12 @@
     <string name="agregar">Agregar</string>
     <string name="t_tulo">Título</string>
     <string name="monto">Monto</string>
+
+    <string name="alertaUsuario">No ha ingresado el usuario</string>
+    <string name="alertaContrasena">No ha ingresado la contrasena</string>
+    <string name="alertaNoCoinciden">Las contraseñas no coinciden</string>
+    <string name="incorrectos">Usuario y/o contraseña incorrectos</string>
+    <string name="ya_existe">El usuario ya existe</string>
+
 </resources>
 
