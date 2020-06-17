@@ -62,6 +62,7 @@
         android:drawableLeft="@drawable/ic_action_name"
         android:drawablePadding="10dp"
         android:ems="10"
+        android:inputType="textPassword"
         android:fontFamily="@font/biryani"
         android:gravity="center_vertical"
         android:hint="@string/escribe_tu_contrase_a"
