@@ -25,14 +25,19 @@
             android:id="@+id/linea2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:layout_toLeftOf="@id/borrar"
             android:text="Line 2"
             android:textColor="@color/negro"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-
-
+        <ImageView
+            android:id="@+id/borrar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_baseline_delete_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"/>
 
     </RelativeLayout>
 
