@@ -3,7 +3,9 @@ package com.application.subscrimamalona;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,12 +65,13 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
 
         Subsname = findViewById(R.id.editText3);
         Monto = findViewById(R.id.editText4);
+
         MetodoPago = findViewById(R.id.editText5);
     }
 
     @Override
     public void onClick(View v) {
-        if (v==bfecha) {
+        if (v == bfecha) {
             final Calendar c = Calendar.getInstance();
             dia = c.get(Calendar.DAY_OF_MONTH);
             mes = c.get(Calendar.MONTH);
@@ -76,15 +80,36 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                    efecha.setText(dayOfMonth+ " / "+(month+1)+" / "+year);
+                    efecha.setText(dayOfMonth + " / " + (month + 1) + " / " + year);
                 }
             }
-            ,ano,mes,dia);
+                    , ano, mes, dia);
             datePickerDialog.show();
         }
 
+        if (v == agregar) {
+            //Primera Versión: Guardamos solo el nombre, tipo de subscripción/pago y el monto
+            String inputSubsname = Subsname.getText().toString();
+            String inputMonto = Monto.getText().toString();
+            String inputTipo = spinner.getAdapter().toString();
 
+            if (inputSubsname.equals("") || inputMonto.equals("") || inputTipo.equals("")) {
+                Toast.makeText(this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                SharedPreferences.Editor editor = this.getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE).edit();
+                editor.putString("titulo", inputSubsname);
+                editor.putString("monto", inputMonto);
+                editor.putString("tipo", inputTipo);
 
+                editor.commit();
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("titulo", inputSubsname);
+                intent.putExtra("monto", inputMonto);
+                intent.putExtra("tipo", inputTipo);
+                startActivity(intent);
+            }
+        }
     }
     public void Volver(View view){
         Intent volver = new Intent(this,MainActivity.class);

@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     TabItem tab1, tab2;
     PagerController pagerAdapter;
     FloatingActionButton plus;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

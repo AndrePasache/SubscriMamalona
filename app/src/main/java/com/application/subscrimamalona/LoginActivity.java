@@ -65,6 +65,5 @@ public class LoginActivity<bundle> extends AppCompatActivity implements View.OnC
             Intent intent = new Intent(this, Registrarse.class);
             startActivity(intent);
         }
-
     }
 }

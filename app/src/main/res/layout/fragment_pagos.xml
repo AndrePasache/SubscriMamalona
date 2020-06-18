@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,6 +12,11 @@
         android:gravity="center"
         android:text="Todavía nada por aquí" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPagos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:scrollbars="vertical" />
 
-
-</FrameLayout>
+</RelativeLayout>

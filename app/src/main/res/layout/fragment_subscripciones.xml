@@ -12,4 +12,11 @@
         android:gravity="center"
         android:text="Todavía nada por aquí" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSubs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:scrollbars="vertical" />
+
 </FrameLayout>
