@@ -15,6 +15,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.application.subscrimamalona.Controlador.Data;
+import com.application.subscrimamalona.Controlador.Pagos;
+import com.application.subscrimamalona.Controlador.Subscripciones;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -87,7 +91,7 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
             datePickerDialog.show();
         }
 
-        if (v == agregar) {
+        /*if (v == agregar) {
             //Primera Versión: Guardamos solo el nombre, tipo de subscripción/pago y el monto
             String inputSubsname = Subsname.getText().toString();
             String inputMonto = Monto.getText().toString();
@@ -97,19 +101,35 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
             }
             else {
-                SharedPreferences.Editor editor = this.getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE).edit();
-                editor.putString("titulo", inputSubsname);
-                editor.putString("monto", inputMonto);
-                editor.putString("tipo", inputTipo);
+                Data datosCasilleros = new Data(this.getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE));*/
+                //SharedPreferences.Editor editor = this.getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE).edit();
+                //datosCasilleros.guardarData(inputSubsname,inputMonto,inputTipo);
+                //datosCasilleros.validarData(inputSubsname,inputMonto,inputTipo);
+                //editor.putString("titulo", inputSubsname);
+                //editor.putString("monto", inputMonto);
+               // datosCasilleros.escribirData();
+                //editor.commit();
 
-                editor.commit();
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("titulo", inputSubsname);
-                intent.putExtra("monto", inputMonto);
+                /*if (inputTipo.equals("Pago")) {
+                    Intent intent = new Intent(this, Pagos.class);
+                    intent.putExtra("titulo", inputSubsname);
+                    intent.putExtra("monto", inputMonto);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(this, Subscripciones.class);
+                    intent.putExtra("titulo", inputSubsname);
+                    intent.putExtra("monto", inputMonto);
+                    startActivity(intent);
+                }*/
+
+                /*Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("titulo",inputSubsname);
+                intent.putExtra("monto",inputMonto);
                 intent.putExtra("tipo", inputTipo);
                 startActivity(intent);
             }
-        }
+        }*/
     }
     public void Volver(View view){
         Intent volver = new Intent(this,MainActivity.class);

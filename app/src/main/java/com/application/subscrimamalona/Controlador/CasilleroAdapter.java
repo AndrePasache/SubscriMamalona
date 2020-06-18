@@ -19,7 +19,7 @@ public class CasilleroAdapter extends RecyclerView.Adapter<CasilleroAdapter.Casi
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
-        void onItemClick(int position);
+        //void onItemClick(int position);
         void onDeleteCLick(int position);
     }
     public void setOnItemClickListener(OnItemClickListener listener){

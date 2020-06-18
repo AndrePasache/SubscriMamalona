@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.application.subscrimamalona.Controlador.Data;
 import com.application.subscrimamalona.Controlador.PagerController;
+import com.application.subscrimamalona.Controlador.Pagos;
+import com.application.subscrimamalona.Controlador.Subscripciones;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabItem;
@@ -68,6 +71,20 @@ public class MainActivity extends AppCompatActivity {
                 Anadir(v);
             }
         });
+
+        //Pagos Pagos = new Pagos();
+        //Pagos.setArguments(getIntent().getExtras());
+        /*Bundle bundle = new Bundle();
+        Data datos = new Data;
+        bundle.putString("titulo", bundle.getExtra());
+
+        if(bundle.get("tipo").equals("Pago")){
+            Pagos Pagos = new Pagos();
+            Pagos.setArguments(getIntent().getExtras());
+        }
+        else{
+            ;
+        }*/
 
     }
     public void Anadir(View view){
