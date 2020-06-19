@@ -44,7 +44,7 @@ public class Pagos extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pagos, container, false);
 
-        createContentList();
+        //createContentList();
 
         mRecyclerView = view.findViewById(R.id.recyclerViewPagos);
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -66,26 +66,37 @@ public class Pagos extends Fragment {
 
         //insertItem(k);
 
+
+        casillerosList1 = new ArrayList<>();
+        casillerosList1.add(new CasilleroContent("hola p","546"));
+        casillerosList1.add(new CasilleroContent("no waaaay","65.4"));
+
+        Bundle arguments = getArguments();
+        if(arguments!=null) {
+            String name = arguments.getString("name");
+            String amount = arguments.getString("amount");
+            casillerosList1.add(new CasilleroContent(name, amount));
+            //mAdapter.notifyItemInserted(k);
+        }
         return view;
     }
 
 
-    public void createContentList(){
+    /*public void createContentList(){
         casillerosList1 = new ArrayList<>();
         casillerosList1.add(new CasilleroContent("hola p","546"));
         casillerosList1.add(new CasilleroContent("no waaaay","65.4"));
-    }
+        insertItem(k);
+        k++;
+    }*/
 
     //int k = casillerosList1.size();
 
     /*public void insertItem(int k){
-
-        //Bundle bundle = getIntent().getExtras();
-        String name = getArguments().getString("titulo");
-        String amount = getArguments().getString("monto");
+        String name = getArguments().getString("name");
+        String amount = getArguments().getString("amount");
         casillerosList1.add(k, new CasilleroContent(name, amount));
         mAdapter.notifyItemInserted(k);
-        k++;
     }*/
 
     public void removeItem(int position){

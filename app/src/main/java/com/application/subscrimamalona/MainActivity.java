@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.application.subscrimamalona.Controlador.CasilleroContent;
 import com.application.subscrimamalona.Controlador.Data;
 import com.application.subscrimamalona.Controlador.PagerController;
 import com.application.subscrimamalona.Controlador.Pagos;
@@ -73,18 +74,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Pagos Pagos = new Pagos();
-        //Pagos.setArguments(getIntent().getExtras());
-        /*Bundle bundle = new Bundle();
-        Data datos = new Data;
-        bundle.putString("titulo", bundle.getExtra());
+        Bundle bundle = getIntent().getExtras();
+        //Pagos.setArguments(bundle);
+        //Data datos = new Data;
+        //bundle.putString("titulo", bundle.getExtra());
 
-        if(bundle.get("tipo").equals("Pago")){
-            Pagos Pagos = new Pagos();
-            Pagos.setArguments(getIntent().getExtras());
+        if(bundle != null &&
+                bundle.get("type").toString().equals("Pago")){
+            Bundle bundle1 = getIntent().getExtras();
+            Pagos pagos = new Pagos();
+            bundle1.putString("name", bundle.get("name").toString());
+            bundle1.putString("amount", bundle.get("amount").toString());
+            pagos.setArguments(bundle1);
         }
-        else{
-            ;
-        }*/
+
 
     }
     public void Anadir(View view){

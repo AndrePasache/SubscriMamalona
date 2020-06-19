@@ -72,6 +72,10 @@ public class CasilleroAdapter extends RecyclerView.Adapter<CasilleroAdapter.Casi
 
     @Override
     public int getItemCount() {
-        return casillerosList.size();
+        if(casillerosList!=null) {
+            return casillerosList.size();
+        }else{
+            return 0;
+        }
     }
 }

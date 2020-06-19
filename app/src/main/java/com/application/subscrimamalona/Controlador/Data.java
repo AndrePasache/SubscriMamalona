@@ -20,19 +20,17 @@ public class Data {
     public void guardarData(String nombre, String monto, String tipo){
         datosCasilleros.add(nombre+":"+monto+":"+tipo);
     }
-    public boolean validarData(String nombre, String monto, String tipo) {
+    public void escribirData(){
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putStringSet("data",datosCasilleros);
+        editor.commit();
+    }
+    /*public boolean validarData(String nombre, String monto, String tipo) {
         for (String datos:datosCasilleros) {
             if (datos.equals(nombre+":"+monto+":"+tipo)) {
                 return true;
             }
         }
         return false;
-    }
-    public void escribirData(){
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putStringSet("titulo",datosCasilleros);
-        editor.putStringSet("monto",datosCasilleros);
-        editor.putStringSet("tipo",datosCasilleros);
-        editor.commit();
-    }
+    }*/
 }
