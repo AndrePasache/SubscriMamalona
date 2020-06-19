@@ -220,15 +220,15 @@
 
     <Button
         android:id="@+id/buttonAdd"
-        android:layout_width="306dp"
-        android:layout_height="37dp"
+        android:layout_width="366dp"
+        android:layout_height="35dp"
         android:background="@drawable/addboton"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.956" />
+        app:layout_constraintVertical_bias="0.957" />
 
     <ImageView
         android:id="@+id/imageView4"

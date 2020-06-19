@@ -23,7 +23,7 @@ public class Subscripciones extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
 
     public Subscripciones() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -33,8 +33,8 @@ public class Subscripciones extends Fragment {
         View view2 = inflater.inflate(R.layout.fragment_subscripciones, container, false);
 
         ArrayList<CasilleroContent> casillerosList2 = new ArrayList<>();
-        casillerosList2.add(new CasilleroContent("alu","587"));
-        casillerosList2.add(new CasilleroContent("me wamorir","1.0005"));
+        casillerosList2.add(new CasilleroContent("Spotify familiar","34"));
+        casillerosList2.add(new CasilleroContent("Smartfit","220"));
 
         mRecyclerView = view2.findViewById(R.id.recyclerViewSubs);
         mLayoutManager = new LinearLayoutManager(getContext());

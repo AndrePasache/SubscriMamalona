@@ -72,8 +72,13 @@ public class Pagos extends Fragment {
 
     public void createContentList(){
         casillerosList1 = new ArrayList<>();
-        casillerosList1.add(new CasilleroContent("hola p","546"));
-        casillerosList1.add(new CasilleroContent("no waaaay","65.4"));
+        casillerosList1.add(new CasilleroContent("Universidad de Piura","1700"));
+        casillerosList1.add(new CasilleroContent("Trio Hogar","180.5"));
+        casillerosList1.add(new CasilleroContent("Luz","150"));
+        casillerosList1.add(new CasilleroContent("Sedapal","80"));
+        casillerosList1.add(new CasilleroContent("Plan Postpago","76.5"));
+        casillerosList1.add(new CasilleroContent("Alquiler local","220.5"));
+
     }
 
     //int k = casillerosList1.size();
