@@ -1,6 +1,8 @@
 package com.application.subscrimamalona;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.application.subscrimamalona.Controlador.CasilleroContent;
 import com.application.subscrimamalona.Controlador.Data;
@@ -25,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     TabItem tab1, tab2;
     PagerController pagerAdapter;
     FloatingActionButton plus;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,22 +75,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         //Pagos Pagos = new Pagos();
-        Bundle bundle = getIntent().getExtras();
-        //Pagos.setArguments(bundle);
-        //Data datos = new Data;
-        //bundle.putString("titulo", bundle.getExtra());
+        /*Bundle bundle = getIntent().getExtras();
+        String nombre = getIntent().getStringExtra("name");
+        String monto = getIntent().getStringExtra("amount");
+        String tipo = getIntent().getStringExtra("type");*/
+        /*if (bundle!=null) {
+            Toast.makeText(this, tipo, Toast.LENGTH_SHORT).show();
+        }*/
 
-        if(bundle != null &&
-                bundle.get("type").toString().equals("Pago")){
-            Bundle bundle1 = getIntent().getExtras();
+        /*if(bundle != null && bundle.get("type").toString().equals("Pago")){
+            Bundle bundle1 = new Bundle();
+            bundle1.putString("nombre", nombre);
+            bundle1.putString("monto", monto);
+            bundle1.putString("tipo",tipo);
             Pagos pagos = new Pagos();
-            bundle1.putString("name", bundle.get("name").toString());
-            bundle1.putString("amount", bundle.get("amount").toString());
             pagos.setArguments(bundle1);
-        }
-
-
+            //getSupportFragmentManager().beginTransaction().replace(R.id.tabpagos,pagos).commit();
+            //Toast.makeText(this, "Hay Data", Toast.LENGTH_SHORT).show();
+        }*/
     }
     public void Anadir(View view){
         Intent anadir = new Intent(this, Add_Activity.class);

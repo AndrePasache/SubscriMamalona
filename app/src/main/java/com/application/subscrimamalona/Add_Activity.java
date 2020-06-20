@@ -66,6 +66,7 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
         });
 
         agregar = (Button)findViewById(R.id.buttonAdd);
+        agregar.setOnClickListener(this);
 
         Subsname = findViewById(R.id.editText3);
         Monto = findViewById(R.id.editText4);
@@ -95,33 +96,22 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
             //Primera Versión: Guardamos solo el nombre, tipo de subscripción/pago y el monto
             String inputSubsname = Subsname.getText().toString();
             String inputMonto = Monto.getText().toString();
-            String inputTipo = spinner.getAdapter().toString();
+            String inputTipo = spinner.getSelectedItem().toString();
+
 
             if (inputSubsname.equals("") || inputMonto.equals("") || inputTipo.equals("")) {
                 Toast.makeText(this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
             }
             else {
-                //Data datosCasilleros = new Data(this.getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE));
-                SharedPreferences.Editor editor = this.getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE).edit();
-                //datosCasilleros.guardarData(inputSubsname,inputMonto,inputTipo);
-                //datosCasilleros.validarData(inputSubsname,inputMonto,inputTipo);
-                editor.putString("name", inputSubsname);
-                editor.putString("amount", inputMonto);
-                editor.putString("type", inputTipo);
-                //datosCasilleros.escribirData();
-                editor.commit();
+                Data datosCasilleros = new Data(this.getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE));
+                datosCasilleros.guardarData(inputSubsname,inputMonto,inputTipo);
+                datosCasilleros.escribirData();
 
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("name", inputSubsname);
-                intent.putExtra("amount", inputMonto);
-                intent.putExtra("type",inputTipo);
-                startActivity(intent);
-
-                /*Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("titulo",inputSubsname);
+                intent.putExtra("nombre",inputSubsname);
                 intent.putExtra("monto",inputMonto);
                 intent.putExtra("tipo", inputTipo);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         }
     }

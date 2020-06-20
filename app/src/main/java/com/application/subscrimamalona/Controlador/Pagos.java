@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.application.subscrimamalona.MainActivity;
 import com.application.subscrimamalona.R;
@@ -44,7 +45,9 @@ public class Pagos extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pagos, container, false);
 
-        //createContentList();
+        casillerosList1 = new ArrayList<>();
+
+        insertItem(casillerosList1.size());
 
         mRecyclerView = view.findViewById(R.id.recyclerViewPagos);
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -63,21 +66,6 @@ public class Pagos extends Fragment {
                 removeItem(position);
             }
         });
-
-        //insertItem(k);
-
-
-        casillerosList1 = new ArrayList<>();
-        casillerosList1.add(new CasilleroContent("hola p","546"));
-        casillerosList1.add(new CasilleroContent("no waaaay","65.4"));
-
-        Bundle arguments = getArguments();
-        if(arguments!=null) {
-            String name = arguments.getString("name");
-            String amount = arguments.getString("amount");
-            casillerosList1.add(new CasilleroContent(name, amount));
-            //mAdapter.notifyItemInserted(k);
-        }
         return view;
     }
 
@@ -86,18 +74,30 @@ public class Pagos extends Fragment {
         casillerosList1 = new ArrayList<>();
         casillerosList1.add(new CasilleroContent("hola p","546"));
         casillerosList1.add(new CasilleroContent("no waaaay","65.4"));
-        insertItem(k);
-        k++;
+        //insertItem();
+        //k++;
     }*/
 
-    //int k = casillerosList1.size();
+    public void insertItem(int position){
+        if(getActivity().getIntent().getExtras()!=null) {
+            String name = getActivity().getIntent().getStringExtra("nombre");
+            String amount = getActivity().getIntent().getStringExtra("monto");
+            String type = getActivity().getIntent().getStringExtra("tipo");
 
-    /*public void insertItem(int k){
-        String name = getArguments().getString("name");
-        String amount = getArguments().getString("amount");
-        casillerosList1.add(k, new CasilleroContent(name, amount));
-        mAdapter.notifyItemInserted(k);
-    }*/
+            Data datos = new Data(getContext().getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE));
+            //datos.leerData();
+            for(int i=0; i<datos.cantidadData();i++){
+                    casillerosList1.add(position,new CasilleroContent(name, amount));
+            }
+            /*if(datos.validarData(name,amount,type)){
+                casillerosList1.add(position,new CasilleroContent(name, amount));
+                //casillerosList1.add(position,new CasilleroContent("prueba","llegan datos"));
+            }*/
+        }else {
+            Toast.makeText(getContext(), "No pasó la data", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     public void removeItem(int position){
         casillerosList1.remove(position);

@@ -27,8 +27,7 @@ public class Subscripciones extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view2 = inflater.inflate(R.layout.fragment_subscripciones, container, false);
 

@@ -23,7 +23,7 @@ public class CasilleroAdapter extends RecyclerView.Adapter<CasilleroAdapter.Casi
         void onDeleteCLick(int position);
     }
     public void setOnItemClickListener(OnItemClickListener listener){
-        mListener =listener;
+        mListener = listener;
     }
 
     public static class CasilleroViewHolder extends RecyclerView.ViewHolder {
@@ -72,10 +72,11 @@ public class CasilleroAdapter extends RecyclerView.Adapter<CasilleroAdapter.Casi
 
     @Override
     public int getItemCount() {
-        if(casillerosList!=null) {
+        /*if(casillerosList!=null) {
             return casillerosList.size();
         }else{
             return 0;
-        }
+        }*/
+        return casillerosList.size();
     }
 }
