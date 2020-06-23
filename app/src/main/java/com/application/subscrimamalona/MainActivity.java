@@ -75,26 +75,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        //Pagos Pagos = new Pagos();
-        /*Bundle bundle = getIntent().getExtras();
-        String nombre = getIntent().getStringExtra("name");
-        String monto = getIntent().getStringExtra("amount");
-        String tipo = getIntent().getStringExtra("type");*/
-        /*if (bundle!=null) {
-            Toast.makeText(this, tipo, Toast.LENGTH_SHORT).show();
-        }*/
-
-        /*if(bundle != null && bundle.get("type").toString().equals("Pago")){
-            Bundle bundle1 = new Bundle();
-            bundle1.putString("nombre", nombre);
-            bundle1.putString("monto", monto);
-            bundle1.putString("tipo",tipo);
-            Pagos pagos = new Pagos();
-            pagos.setArguments(bundle1);
-            //getSupportFragmentManager().beginTransaction().replace(R.id.tabpagos,pagos).commit();
-            //Toast.makeText(this, "Hay Data", Toast.LENGTH_SHORT).show();
-        }*/
     }
     public void Anadir(View view){
         Intent anadir = new Intent(this, Add_Activity.class);
