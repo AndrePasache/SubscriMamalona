@@ -1,6 +1,8 @@
 package com.application.subscrimamalona;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.application.subscrimamalona.Controlador.CasilleroContent;
 import com.application.subscrimamalona.Controlador.Data;
@@ -25,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     TabItem tab1, tab2;
     PagerController pagerAdapter;
     FloatingActionButton plus;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,22 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 Anadir(v);
             }
         });
-
-        //Pagos Pagos = new Pagos();
-        Bundle bundle = getIntent().getExtras();
-        //Pagos.setArguments(bundle);
-        //Data datos = new Data;
-        //bundle.putString("titulo", bundle.getExtra());
-
-        if(bundle != null &&
-                bundle.get("type").toString().equals("Pago")){
-            Bundle bundle1 = getIntent().getExtras();
-            Pagos pagos = new Pagos();
-            bundle1.putString("name", bundle.get("name").toString());
-            bundle1.putString("amount", bundle.get("amount").toString());
-            pagos.setArguments(bundle1);
-        }
-
 
     }
     public void Anadir(View view){

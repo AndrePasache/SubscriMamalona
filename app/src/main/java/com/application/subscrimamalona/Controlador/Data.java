@@ -15,22 +15,39 @@ public class Data {
         leerData();
     }
     public void leerData(){
-        datosCasilleros = preferences.getStringSet("titulo", new HashSet<String>());
+        datosCasilleros = preferences.getStringSet("data", new HashSet<String>());
     }
-    public void guardarData(String nombre, String monto, String tipo){
-        datosCasilleros.add(nombre+":"+monto+":"+tipo);
+    public void guardarData(String nombre, String monto){
+        datosCasilleros.add(nombre+":"+monto);
     }
     public void escribirData(){
         SharedPreferences.Editor editor = preferences.edit();
         editor.putStringSet("data",datosCasilleros);
         editor.commit();
     }
-    /*public boolean validarData(String nombre, String monto, String tipo) {
+    public Set<String> returnData(){
+         return datosCasilleros = preferences.getStringSet("data", new HashSet<String>());
+    }
+    public void deleteData(){
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove("data");
+        editor.commit();
+    }
+    public boolean verificarData(){
+        if(datosCasilleros.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+    public int cantidadData(){
+        return datosCasilleros.size();
+    }
+    public boolean validarData(String nombre, String monto) {
         for (String datos:datosCasilleros) {
-            if (datos.equals(nombre+":"+monto+":"+tipo)) {
+            if (datos.equals(nombre+":"+monto)) {
                 return true;
             }
         }
         return false;
-    }*/
+    }
 }

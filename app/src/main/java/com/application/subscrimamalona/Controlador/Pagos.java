@@ -18,11 +18,17 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.application.subscrimamalona.Add_Activity;
 import com.application.subscrimamalona.MainActivity;
 import com.application.subscrimamalona.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.xml.namespace.QName;
 
@@ -44,7 +50,7 @@ public class Pagos extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pagos, container, false);
 
-        //createContentList();
+        createContentList();
 
         mRecyclerView = view.findViewById(R.id.recyclerViewPagos);
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -64,42 +70,66 @@ public class Pagos extends Fragment {
             }
         });
 
-        //insertItem(k);
+        insertItem(casillerosList1.size());
 
-
-        casillerosList1 = new ArrayList<>();
-        casillerosList1.add(new CasilleroContent("hola p","546"));
-        casillerosList1.add(new CasilleroContent("no waaaay","65.4"));
-
-        Bundle arguments = getArguments();
-        if(arguments!=null) {
-            String name = arguments.getString("name");
-            String amount = arguments.getString("amount");
-            casillerosList1.add(new CasilleroContent(name, amount));
-            //mAdapter.notifyItemInserted(k);
-        }
         return view;
     }
 
 
-    /*public void createContentList(){
+    public void createContentList(){
         casillerosList1 = new ArrayList<>();
-        casillerosList1.add(new CasilleroContent("hola p","546"));
-        casillerosList1.add(new CasilleroContent("no waaaay","65.4"));
-        insertItem(k);
-        k++;
-    }*/
+        /*casillerosList1.add(new CasilleroContent("hola p","546"));
+        casillerosList1.add(new CasilleroContent("no waaaay","65.4"));*/
 
-    //int k = casillerosList1.size();
+    }
 
-    /*public void insertItem(int k){
-        String name = getArguments().getString("name");
-        String amount = getArguments().getString("amount");
-        casillerosList1.add(k, new CasilleroContent(name, amount));
-        mAdapter.notifyItemInserted(k);
-    }*/
+    public void insertItem(int position){
+        Data datos = new Data(getContext().getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE));
+        String name, amount;
+        if(getActivity().getIntent().getExtras()!=null && getActivity().getIntent().getStringExtra("tipo").equals("Pago")) {
+            name = getActivity().getIntent().getStringExtra("nombre");
+            amount = getActivity().getIntent().getStringExtra("monto");
+
+            datos.guardarData(name,amount);
+            datos.escribirData();
+
+        }/*else {
+            Toast.makeText(getContext(), "No pasó la data", Toast.LENGTH_SHORT).show();
+        }*/
+
+        Set<String> lista;
+        lista = datos.returnData();
+
+        for(String datitos: lista){
+            String[] partes = datitos.split(":");
+            casillerosList1.add(new CasilleroContent(partes[0], partes[1]));
+        }
+
+        /*List<String> lista = new ArrayList<>();
+        lista.addAll(datos.returnData());
+        java.util.Collections.sort(lista);*/
+        /*for(String datitos: lista) {
+            String[] partes = datitos.split(":");
+            casillerosList1.add(new CasilleroContent(partes[0], partes[1]));
+        }*/
+        /*for(int i=0; i<lista.size(); i++){
+            String[] partes = lista.get(i).split(":");
+            casillerosList1.add(new CasilleroContent(partes[0], partes[1]));
+        }*/
+
+        /*ArrayList<String> lista = new ArrayList<>();
+        //lista.addAll(datos.returnData());
+        lista.addAll(position, datos.returnData());
+
+        for(String datitos: lista){
+            String[] partes = datitos.split(":");
+            casillerosList1.add(new CasilleroContent(partes[0], partes[1]));*/
+        }
+    }
 
     public void removeItem(int position){
+        Data datos = new Data(getContext().getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE));
+        datos.deleteData();
         casillerosList1.remove(position);
         mAdapter.notifyItemRemoved(position);
     }

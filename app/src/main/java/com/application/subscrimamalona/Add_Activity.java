@@ -61,15 +61,20 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Volver(v);
+                volver(v);
             }
         });
 
         agregar = (Button)findViewById(R.id.buttonAdd);
+        agregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendInfo(v);
+            }
+        });
 
         Subsname = findViewById(R.id.editText3);
         Monto = findViewById(R.id.editText4);
-
         MetodoPago = findViewById(R.id.editText5);
     }
 
@@ -90,42 +95,25 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
                     , ano, mes, dia);
             datePickerDialog.show();
         }
+    }
+    public void sendInfo(View view){
+        String inputSubsname = Subsname.getText().toString();
+        String inputMonto = Monto.getText().toString();
+        String inputTipo = spinner.getSelectedItem().toString();
 
-        if (v == agregar) {
-            //Primera Versión: Guardamos solo el nombre, tipo de subscripción/pago y el monto
-            String inputSubsname = Subsname.getText().toString();
-            String inputMonto = Monto.getText().toString();
-            String inputTipo = spinner.getAdapter().toString();
-
-            if (inputSubsname.equals("") || inputMonto.equals("") || inputTipo.equals("")) {
-                Toast.makeText(this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                //Data datosCasilleros = new Data(this.getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE));
-                SharedPreferences.Editor editor = this.getSharedPreferences("SubscriMamalona", Context.MODE_PRIVATE).edit();
-                //datosCasilleros.guardarData(inputSubsname,inputMonto,inputTipo);
-                //datosCasilleros.validarData(inputSubsname,inputMonto,inputTipo);
-                editor.putString("name", inputSubsname);
-                editor.putString("amount", inputMonto);
-                editor.putString("type", inputTipo);
-                //datosCasilleros.escribirData();
-                editor.commit();
-
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("name", inputSubsname);
-                intent.putExtra("amount", inputMonto);
-                intent.putExtra("type",inputTipo);
-                startActivity(intent);
-
-                /*Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("titulo",inputSubsname);
-                intent.putExtra("monto",inputMonto);
-                intent.putExtra("tipo", inputTipo);
-                startActivity(intent);*/
-            }
+        if (inputSubsname.equals("") || inputMonto.equals("") || inputTipo.equals("")) {
+            Toast.makeText(this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("nombre", inputSubsname);
+            intent.putExtra("monto", inputMonto);
+            intent.putExtra("tipo", inputTipo);
+            startActivity(intent);
         }
     }
-    public void Volver(View view){
+
+    public void volver(View view){
         Intent volver = new Intent(this,MainActivity.class);
         startActivity(volver);
     }
