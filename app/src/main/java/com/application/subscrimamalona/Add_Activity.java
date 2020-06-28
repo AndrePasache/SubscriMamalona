@@ -3,9 +3,11 @@ package com.application.subscrimamalona;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,9 +17,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.application.subscrimamalona.Controlador.Data;
-import com.application.subscrimamalona.Controlador.Pagos;
-import com.application.subscrimamalona.Controlador.Subscripciones;
+import com.application.subscrimamalona.DB.Conexion;
+import com.application.subscrimamalona.DB.Data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +38,7 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
         spinner2 = findViewById(R.id.spinner2);
         spinner3 = findViewById(R.id.spinner3);
 
-        String[] tipo = {"Suscripción","Pago"};
+        String[] tipo = {"Subscripción","Pago"};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(tipo));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.spinner_est,arrayList);
         spinner.setAdapter(arrayAdapter);
@@ -100,17 +101,27 @@ public class Add_Activity extends AppCompatActivity implements View.OnClickListe
         String inputSubsname = Subsname.getText().toString();
         String inputMonto = Monto.getText().toString();
         String inputTipo = spinner.getSelectedItem().toString();
+        //String inputFecha = bfecha.getText().toString();
 
-        if (inputSubsname.equals("") || inputMonto.equals("") || inputTipo.equals("")) {
-            Toast.makeText(this, "Ningún campo puede quedar vacío", Toast.LENGTH_SHORT).show();
+        Conexion conexion = new Conexion(this);
+        SQLiteDatabase db = conexion.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Data.CAMPO_NOMBRE, inputSubsname);
+        values.put(Data.CAMPO_MONTO, inputMonto);
+        values.put(Data.CAMPO_TIPO, inputTipo);
+
+        Long id = db.insert(Data.TABLA_DATA, Data.CAMPO_NOMBRE , values);
+        db.close();
+
+        if(inputTipo.equals("Pago")) {
+            Toast.makeText(this, "Se añadió un nuevo pago", Toast.LENGTH_SHORT).show();
+        } else if (inputTipo.equals("Subscripción")) {
+            Toast.makeText(this, "Se añadió una nueva subscripción", Toast.LENGTH_SHORT).show();
         }
-        else {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("nombre", inputSubsname);
-            intent.putExtra("monto", inputMonto);
-            intent.putExtra("tipo", inputTipo);
-            startActivity(intent);
-        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public void volver(View view){
