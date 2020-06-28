@@ -2,15 +2,18 @@ package com.application.subscrimamalona;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.application.subscrimamalona.Controlador.Usuarios;
+import com.application.subscrimamalona.DB.Conexion;
+import com.application.subscrimamalona.DB.Usuarios;
 
 public class Registrarse extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,12 +49,20 @@ public class Registrarse extends AppCompatActivity implements View.OnClickListen
                 Toast.makeText(this, getString(R.string.alertaNoCoinciden), Toast.LENGTH_SHORT).show();
 
             } else {
-                Usuarios usuarios = new Usuarios(this.getSharedPreferences("subscrimanager", Context.MODE_PRIVATE));
-                usuarios.guardar(inputUsuario, inputContrasena);
-                usuarios.escribirUsuarios();
+                Conexion conexion = new Conexion(this);
+                SQLiteDatabase db = conexion.getWritableDatabase();
+
+                ContentValues values = new ContentValues();
+                values.put(Usuarios.CAMPO_USER, inputUsuario);
+                values.put(Usuarios.CAMPO_PASSWORD, inputContrasena);
+
+                Long id = db.insert(Usuarios.TABLA_USUARIOS, Usuarios.CAMPO_USER, values);
+                db.close();
 
                 Intent intent = new Intent(this, LoginActivity.class);
-                intent.putExtra("usuario", inputUsuario);
+                Bundle extras = new Bundle();
+                extras.putSerializable("usuario",id);
+                intent.putExtras(extras);
                 startActivity(intent);
 
             }

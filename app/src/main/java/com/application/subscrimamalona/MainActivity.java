@@ -1,24 +1,15 @@
 package com.application.subscrimamalona;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.application.subscrimamalona.Controlador.CasilleroContent;
-import com.application.subscrimamalona.Controlador.Data;
 import com.application.subscrimamalona.Controlador.PagerController;
-import com.application.subscrimamalona.Controlador.Pagos;
-import com.application.subscrimamalona.Controlador.Subscripciones;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 

@@ -4,20 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.application.subscrimamalona.Controlador.Usuarios;
+import com.application.subscrimamalona.DB.Conexion;
+import com.application.subscrimamalona.DB.Usuarios;
 
-public class LoginActivity<bundle> extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        conexion = new Conexion(this);
 
         botonIngresar = (Button)findViewById(R.id.buttonIngresar);
         botonRegistrarse = (Button)findViewById(R.id.buttonRegistrate);
@@ -29,16 +34,19 @@ public class LoginActivity<bundle> extends AppCompatActivity implements View.OnC
 
         Bundle bundle = getIntent().getExtras();
         if (bundle!=null) {
-            String usuario = (String) bundle.get("usuario");
-            eUsuario.setText(usuario);
+            Usuarios usuario = (Usuarios)bundle.getSerializable("usuario");
+            eUsuario.setText(usuario.getUser());
+            eContrasena.setText(usuario.getPassword());
         }
     }
     Button botonIngresar, botonRegistrarse;
     EditText eUsuario, eContrasena;
-
+    Conexion conexion;
 
     @Override
     public void onClick(View v) {
+
+        SQLiteDatabase db = conexion.getReadableDatabase();
 
         if (v.getId() == R.id.buttonIngresar){
             String inputUsuario = eUsuario.getText().toString();
@@ -49,12 +57,18 @@ public class LoginActivity<bundle> extends AppCompatActivity implements View.OnC
             } else if (inputContrasena.equals("")) {
                 Toast.makeText(this,getString(R.string.alertaContrasena),Toast.LENGTH_SHORT).show();
             }else {
-                Usuarios usuarios = new Usuarios(this.getSharedPreferences("subscrimanager", Context.MODE_PRIVATE));
-                if (usuarios.validar(inputUsuario,inputContrasena)){
-                    Intent intent = new Intent(this,MainActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(this,getString(R.string.incorrectos),Toast.LENGTH_LONG).show();
+                String[] campos = {Usuarios.CAMPO_USER, Usuarios.CAMPO_PASSWORD};
+
+                Cursor cursor = db.query(Usuarios.TABLA_USUARIOS, campos, null, null, null, null, null);
+                while (cursor.moveToNext()){
+                    String user = cursor.getString(0);
+                    String password = cursor.getString(1);
+                    if (user.equals(inputUsuario) && password.equals(inputContrasena)){
+                        Intent intent = new Intent(this,MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(this,getString(R.string.incorrectos),Toast.LENGTH_LONG).show();
+                    }
                 }
 
             }
