@@ -8,6 +8,7 @@ public class CasilleroContent {
         this.monto = monto;
     }
 
+
     public String getTitulo(){
         return this.titulo;
     }

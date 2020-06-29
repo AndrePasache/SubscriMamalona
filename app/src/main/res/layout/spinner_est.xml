@@ -5,5 +5,7 @@
     android:paddingHorizontal="0dp"
     android:fontFamily="@font/biryani_semibold"
     android:textColor="@color/vino"
-    android:textSize="16sp">>
+    android:textSize="16sp">
+
+
 </TextView>

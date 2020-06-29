@@ -27,13 +27,14 @@ public class CasilleroAdapter extends RecyclerView.Adapter<CasilleroAdapter.Casi
     }
 
     public static class CasilleroViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView1, textView2;
+        public TextView textView1, textView2, textView3;
         public ImageView imageButton1;
 
         public CasilleroViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             textView1 = itemView.findViewById(R.id.linea1);
             textView2 = itemView.findViewById(R.id.linea2);
+            textView3 = itemView.findViewById(R.id.dias_faltan);
             imageButton1 = itemView.findViewById(R.id.borrar);
 
             imageButton1.setOnClickListener(new View.OnClickListener() {
