@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button botonIngresar, botonRegistrarse;
     EditText eUsuario, eContrasena;
     Conexion conexion;
+    int k=0;
 
     @Override
     public void onClick(View v) {
@@ -66,11 +67,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (user.equals(inputUsuario) && password.equals(inputContrasena)){
                         Intent intent = new Intent(this,MainActivity.class);
                         startActivity(intent);
-                    } else {
-                        Toast.makeText(this,getString(R.string.incorrectos),Toast.LENGTH_LONG).show();
+                        k++;
                     }
                 }
-
+                if (k==0){
+                    Toast.makeText(this,getString(R.string.incorrectos),Toast.LENGTH_LONG).show();
+                }
+                k=0;
             }
 
         }

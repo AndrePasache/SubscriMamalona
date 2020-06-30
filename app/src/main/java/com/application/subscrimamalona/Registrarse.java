@@ -15,6 +15,9 @@ import android.widget.Toast;
 import com.application.subscrimamalona.DB.Conexion;
 import com.application.subscrimamalona.DB.Usuarios;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Registrarse extends AppCompatActivity implements View.OnClickListener {
 
     @Override
@@ -52,16 +55,19 @@ public class Registrarse extends AppCompatActivity implements View.OnClickListen
                 Conexion conexion = new Conexion(this);
                 SQLiteDatabase db = conexion.getWritableDatabase();
 
+
                 ContentValues values = new ContentValues();
                 values.put(Usuarios.CAMPO_USER, inputUsuario);
                 values.put(Usuarios.CAMPO_PASSWORD, inputContrasena);
+
+                Usuarios u = new Usuarios(inputUsuario,inputContrasena);
 
                 Long id = db.insert(Usuarios.TABLA_USUARIOS, Usuarios.CAMPO_USER, values);
                 db.close();
 
                 Intent intent = new Intent(this, LoginActivity.class);
                 Bundle extras = new Bundle();
-                extras.putSerializable("usuario",id);
+                extras.putSerializable("usuario",u);
                 intent.putExtras(extras);
                 startActivity(intent);
 
