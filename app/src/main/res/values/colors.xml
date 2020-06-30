@@ -2,6 +2,7 @@
 <resources>
     <color name="negro">#050102</color>
     <color name="vino">#442342</color>
+    <color name="bajito">#C39B1C61</color>
     <color name="fucsia">#9b1c61</color>
     <color name="coral">#fb416a</color>
     <color name="blanco">#ffffff</color>

@@ -2,35 +2,45 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="380dp"
-    android:layout_height="200dp"
+    android:layout_height="240dp"
     android:layout_marginStart="12dp"
     android:layout_marginTop="30dp"
     android:layout_marginBottom="6dp"
-    app:cardBackgroundColor="#889B1C61"
-    app:cardCornerRadius="25dp"
-    app:cardElevation="0dp">
 
+
+    android:animateLayoutChanges="false"
+    android:foreground="@drawable/card2"
+    android:measureAllChildren="true"
+    android:saveEnabled="false"
+    android:visibility="visible"
+    app:cardBackgroundColor="#00FFFFFF"
+    app:cardCornerRadius="31dp">
 
 
     <RelativeLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+
+        >
 
 
         <TextView
             android:id="@+id/linea1"
-            android:layout_width="wrap_content"
+            android:layout_width="153dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="57dp"
             android:fontFamily="@font/biryani_semibold"
             android:text="Line 1"
             android:textColor="@color/fucsia"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+
+
+            />
 
         <TextView
             android:id="@+id/linea2"
@@ -38,14 +48,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="77dp"
-
-            android:layout_marginEnd="285dp"
+            android:layout_marginTop="106dp"
+            android:layout_marginEnd="286dp"
             android:layout_marginRight="238dp"
+            android:elevation="5dp"
             android:fontFamily="@font/biryani"
             android:text="Line 2"
             android:textColor="@color/fucsia"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:translationZ="5dp" />
 
         <TextView
             android:id="@+id/linea3"
@@ -53,9 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="134dp"
-
-            android:layout_marginEnd="284dp"
+            android:layout_marginTop="172dp"
+            android:layout_marginEnd="277dp"
             android:layout_marginRight="237dp"
             android:fontFamily="@font/biryani"
             android:text="Line 3"
@@ -74,20 +84,19 @@
 
         <com.getbase.floatingactionbutton.FloatingActionsMenu
             android:id="@+id/menu"
-            android:layout_width="84dp"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="224dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="283dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="-3dp"
-            android:layout_marginBottom="-6dp"
+            android:layout_marginStart="302dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="0dp"
             app:fab_addButtonColorNormal="@color/blanco"
             app:fab_addButtonPlusIconColor="@color/fucsia"
-            app:fab_addButtonSize="mini"
-            >
+            app:fab_addButtonSize="mini">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
                 android:id="@+id/eliminar"
@@ -108,22 +117,33 @@
                 app:fab_colorNormal="@color/fucsia"
                 app:fab_icon="@drawable/ic_action_editar"
                 app:fab_size="mini">
+
             </com.getbase.floatingactionbutton.FloatingActionButton>
 
         </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
         <TextView
             android:id="@+id/dias_faltan"
-            android:layout_width="wrap_content"
-            android:layout_height="76dp"
+            android:layout_width="123dp"
+            android:layout_height="133dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="104dp"
-            android:layout_marginBottom="58dp"
-            android:text="TextView" />
+            android:layout_marginTop="69dp"
+            android:layout_marginEnd="61dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/redondo"
+            android:fontFamily="@font/biryani_semibold"
+            android:paddingVertical="10.5dp"
+            android:paddingLeft="30dp"
+            android:text="  15 días"
+            android:textColor="@color/blanco"
+            android:textSize="30dp">
+
+        </TextView>
+
 
     </RelativeLayout>
+
 
 </androidx.cardview.widget.CardView>

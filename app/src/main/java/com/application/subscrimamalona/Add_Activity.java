@@ -124,7 +124,7 @@ public class Add_Activity extends AppCompatActivity {
                 Long AlertTime = calendar.getTimeInMillis() - System.currentTimeMillis();
                 int random = (int)(Math.random()*50 + 1);
 
-                androidx.work.Data data = GuardarData("Susbscrimanager","Se aproxima la fecha de tu PAGO/SUSCRIPCIÓN", random);
+                androidx.work.Data data = GuardarData("Susbscrimanager","¡Hoy es la fecha de tu PAGO/SUSCRIPCIÓN!", random);
                 WorkManagernoti.GuardarNoti(AlertTime,data,tag);
 
                 String periodo = Long.toString(TimeUnit.MILLISECONDS.toDays(AlertTime));
