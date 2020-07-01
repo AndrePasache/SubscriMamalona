@@ -169,7 +169,7 @@ public class Add_Activity extends AppCompatActivity {
             if (Periodo.equals("1")){
                 Periodo = Periodo + " día";
             } else if (Periodo.equals("0")){
-                Periodo = "ES HOY";
+                Periodo = "ES HOY!";
             } else {
                 Periodo = Periodo + " días";
             }
