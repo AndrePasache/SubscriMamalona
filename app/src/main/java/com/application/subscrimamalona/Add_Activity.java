@@ -120,17 +120,19 @@ public class Add_Activity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                String tag = generateKey();
-                Long AlertTime = calendar.getTimeInMillis() - System.currentTimeMillis();
-                int random = (int)(Math.random()*50 + 1);
+                if (!ehora.getText().toString().equals("")||!efecha.getText().toString().equals("")) {
 
-                androidx.work.Data data = GuardarData("Susbscrimanager","¡Hoy es la fecha de tu PAGO/SUSCRIPCIÓN!", random);
-                WorkManagernoti.GuardarNoti(AlertTime,data,tag);
+                    String tag = generateKey();
+                    Long AlertTime = calendar.getTimeInMillis() - System.currentTimeMillis();
+                    int random = (int) (Math.random() * 50 + 1);
 
-                String periodo = Long.toString(TimeUnit.MILLISECONDS.toDays(AlertTime));
+                    androidx.work.Data data = GuardarData("Susbscrimanager", "¡Hoy es la fecha de tu PAGO/SUSCRIPCIÓN!", random);
+                    WorkManagernoti.GuardarNoti(AlertTime, data, tag);
 
+                    Periodo = Long.toString(TimeUnit.MILLISECONDS.toDays(AlertTime));
 
-                Toast.makeText(Add_Activity.this, "Recordatorio guardado.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Add_Activity.this, "Recordatorio guardado.", Toast.LENGTH_SHORT).show();
+                }
                 sendInfo(v);
             }
         });
@@ -150,32 +152,48 @@ public class Add_Activity extends AppCompatActivity {
                 .putString("detalle",detalle)
                 .putInt("id_noti",id_noti).build();
     }
+
     public void sendInfo(View view){
         String inputSubsname = Subsname.getText().toString();
         String inputMonto = Monto.getText().toString();
         String inputTipo = spinner.getSelectedItem().toString();
+        String inputMetodo = MetodoPago.getText().toString();
+        String inputMoneda = spinner2.getSelectedItem().toString();
 
-        //String inputFecha = bfecha.getText().toString();
+        if (inputSubsname.equals("")|| inputMonto.equals("")|| inputMetodo.equals("")|| Periodo.equals("")){
+            Toast.makeText(this, "Ningún campo debe quedar vacío", Toast.LENGTH_SHORT).show();
+        } else {
+            Conexion conexion = new Conexion(this);
+            SQLiteDatabase db = conexion.getWritableDatabase();
 
-        Conexion conexion = new Conexion(this);
-        SQLiteDatabase db = conexion.getWritableDatabase();
+            if (Periodo.equals("1")){
+                Periodo = Periodo + " día";
+            } else if (Periodo.equals("0")){
+                Periodo = "ES HOY";
+            } else {
+                Periodo = Periodo + " días";
+            }
 
-        ContentValues values = new ContentValues();
-        values.put(Data.CAMPO_NOMBRE, inputSubsname);
-        values.put(Data.CAMPO_MONTO, inputMonto);
-        values.put(Data.CAMPO_TIPO, inputTipo);
+            ContentValues values = new ContentValues();
+            values.put(Data.CAMPO_NOMBRE, inputSubsname);
+            values.put(Data.CAMPO_MONTO, inputMonto);
+            values.put(Data.CAMPO_TIPO, inputTipo);
+            values.put(Data.CAMPO_METODO_PAGO, inputMetodo);
+            values.put(Data.CAMPO_MONEDA, inputMoneda);
+            values.put(Data.CAMPO_DIAS_FALTAN, Periodo);
 
-        Long id = db.insert(Data.TABLA_DATA, Data.CAMPO_NOMBRE , values);
-        db.close();
+            Long id = db.insert(Data.TABLA_DATA, Data.CAMPO_NOMBRE, values);
+            db.close();
 
-        if(inputTipo.equals("Pago")) {
-            Toast.makeText(this, "Se añadió un nuevo pago", Toast.LENGTH_SHORT).show();
-        } else if (inputTipo.equals("Subscripción")) {
-            Toast.makeText(this, "Se añadió una nueva subscripción", Toast.LENGTH_SHORT).show();
+            if (inputTipo.equals("Pago")) {
+                Toast.makeText(this, "Se añadió un nuevo pago", Toast.LENGTH_SHORT).show();
+            } else if (inputTipo.equals("Subscripción")) {
+                Toast.makeText(this, "Se añadió una nueva subscripción", Toast.LENGTH_SHORT).show();
+            }
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 
     public void volver(View view){

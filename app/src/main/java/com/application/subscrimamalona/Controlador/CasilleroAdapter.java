@@ -27,14 +27,16 @@ public class CasilleroAdapter extends RecyclerView.Adapter<CasilleroAdapter.Casi
     }
 
     public static class CasilleroViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView1, textView2, textView3;
+        public TextView textView1, textView2, textView3, textView4, textView5;
         public ImageView imageButton1;
 
         public CasilleroViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             textView1 = itemView.findViewById(R.id.linea1);
             textView2 = itemView.findViewById(R.id.linea2);
-            textView3 = itemView.findViewById(R.id.dias_faltan);
+            textView3 = itemView.findViewById(R.id.linea3);
+            textView4 = itemView.findViewById(R.id.linea4);
+            textView5 = itemView.findViewById(R.id.dias_faltan);
             imageButton1 = itemView.findViewById(R.id.borrar);
 
             imageButton1.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +71,9 @@ public class CasilleroAdapter extends RecyclerView.Adapter<CasilleroAdapter.Casi
 
         holder.textView1.setText(currentCasillero.getTitulo());
         holder.textView2.setText(currentCasillero.getMonto());
+        holder.textView3.setText(currentCasillero.getMetodo_pago());
+        holder.textView4.setText(currentCasillero.getMoneda());
+        holder.textView5.setText(currentCasillero.getDias_restantes());
     }
 
     @Override

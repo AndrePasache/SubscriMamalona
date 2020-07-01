@@ -68,15 +68,18 @@ public class Pagos extends Fragment {
 
     public void insertItem(){
         SQLiteDatabase db = conexion.getReadableDatabase();
-        String[] campos = {Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO};
+        String[] campos = {Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA};
 
         Cursor cursor = db.query(Data.TABLA_DATA, campos, null, null, null, null, null);
         while (cursor.moveToNext()){
             String nombre = cursor.getString(0);
             String monto = cursor.getString(1);
             String tipo = cursor.getString(2);
+            String dias_faltan = cursor.getString(3);
+            String metodo_pago = cursor.getString(4);
+            String moneda = cursor.getString(5);
             if (tipo.equals("Pago")) {
-                casillerosList1.add(new CasilleroContent(nombre, monto));
+                casillerosList1.add(new CasilleroContent(nombre, monto, dias_faltan,metodo_pago,moneda));
             }
         }
     }

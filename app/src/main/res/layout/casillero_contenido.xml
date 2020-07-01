@@ -18,13 +18,10 @@
 
 
     <RelativeLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
-
         >
-
 
         <TextView
             android:id="@+id/linea1"
@@ -38,8 +35,6 @@
             android:text="Line 1"
             android:textColor="@color/fucsia"
             android:textSize="18sp"
-
-
             />
 
         <TextView
@@ -48,12 +43,28 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="106dp"
-            android:layout_marginEnd="286dp"
+            android:layout_marginTop="115dp"
+            android:layout_marginEnd="255dp"
             android:layout_marginRight="238dp"
             android:elevation="5dp"
             android:fontFamily="@font/biryani"
             android:text="Line 2"
+            android:textColor="@color/fucsia"
+            android:textSize="16sp"
+            android:translationZ="5dp" />
+
+        <TextView
+            android:id="@+id/linea4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="116dp"
+            android:layout_marginEnd="309dp"
+            android:layout_marginRight="238dp"
+            android:elevation="5dp"
+            android:fontFamily="@font/biryani"
+            android:text="Line 4"
             android:textColor="@color/fucsia"
             android:textSize="16sp"
             android:translationZ="5dp" />
@@ -142,8 +153,6 @@
 
         </TextView>
 
-
     </RelativeLayout>
-
 
 </androidx.cardview.widget.CardView>
