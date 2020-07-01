@@ -3,6 +3,7 @@ package com.application.subscrimamalona.Controlador;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +29,7 @@ public class CasilleroAdapter2 extends RecyclerView.Adapter<CasilleroAdapter2.Ca
 
     public static class CasilleroViewHolder extends RecyclerView.ViewHolder {
         public TextView textView1, textView2, textView3, textView4, textView5;
-        public ImageView imageButton1;
+        public ImageButton fbEditar, fbEliminar;
 
         public CasilleroViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -37,9 +38,9 @@ public class CasilleroAdapter2 extends RecyclerView.Adapter<CasilleroAdapter2.Ca
             textView3 = itemView.findViewById(R.id.linea3);
             textView4 = itemView.findViewById(R.id.linea4);
             textView5 = itemView.findViewById(R.id.dias_faltan);
-            imageButton1 = itemView.findViewById(R.id.borrar);
+            fbEliminar = itemView.findViewById(R.id.eliminar);
 
-            imageButton1.setOnClickListener(new View.OnClickListener() {
+            fbEliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(listener != null){

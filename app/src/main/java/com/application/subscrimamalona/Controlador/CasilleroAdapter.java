@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.application.subscrimamalona.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class CasilleroAdapter extends RecyclerView.Adapter<CasilleroAdapter.Casi
 
     public static class CasilleroViewHolder extends RecyclerView.ViewHolder {
         public TextView textView1, textView2, textView3, textView4, textView5;
-        public ImageView imageButton1;
+        public ImageButton fbEditar, fbEliminar;
 
         public CasilleroViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -37,9 +38,9 @@ public class CasilleroAdapter extends RecyclerView.Adapter<CasilleroAdapter.Casi
             textView3 = itemView.findViewById(R.id.linea3);
             textView4 = itemView.findViewById(R.id.linea4);
             textView5 = itemView.findViewById(R.id.dias_faltan);
-            imageButton1 = itemView.findViewById(R.id.borrar);
+            fbEliminar = itemView.findViewById(R.id.eliminar);
 
-            imageButton1.setOnClickListener(new View.OnClickListener() {
+            fbEliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(listener != null){

@@ -2,55 +2,52 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="380dp"
-    android:layout_height="240dp"
+    android:layout_height="190dp"
     android:layout_marginStart="12dp"
-    android:layout_marginTop="30dp"
+    android:layout_marginTop="20dp"
     android:layout_marginBottom="6dp"
 
-
     android:animateLayoutChanges="false"
-    android:foreground="@drawable/card2"
     android:measureAllChildren="true"
     android:saveEnabled="false"
     android:visibility="visible"
-    app:cardBackgroundColor="#00FFFFFF"
-    app:cardCornerRadius="31dp">
+    app:cardCornerRadius="40dp">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        >
+        android:background="@drawable/carta">
 
         <TextView
             android:id="@+id/linea1"
+            android:gravity="left"
             android:layout_width="153dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="57dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="27dp"
             android:fontFamily="@font/biryani_semibold"
             android:text="Line 1"
-            android:textColor="@color/fucsia"
-            android:textSize="18sp"
-            />
+            android:textColor="@color/blanco"
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/linea2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="156dp"
+            android:layout_height="69dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="115dp"
-            android:layout_marginEnd="255dp"
+            android:layout_marginTop="66dp"
+            android:layout_marginEnd="242dp"
             android:layout_marginRight="238dp"
             android:elevation="5dp"
             android:fontFamily="@font/biryani"
+            android:gravity="center"
             android:text="Line 2"
-            android:textColor="@color/fucsia"
-            android:textSize="16sp"
+            android:textColor="@color/blanco"
+            android:textSize="50dp"
             android:translationZ="5dp" />
 
         <TextView
@@ -59,28 +56,29 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="116dp"
-            android:layout_marginEnd="309dp"
+            android:layout_marginTop="94dp"
+            android:layout_marginEnd="205dp"
             android:layout_marginRight="238dp"
             android:elevation="5dp"
             android:fontFamily="@font/biryani"
             android:text="Line 4"
-            android:textColor="@color/fucsia"
+            android:textColor="@color/blanco"
             android:textSize="16sp"
             android:translationZ="5dp" />
 
         <TextView
             android:id="@+id/linea3"
-            android:layout_width="wrap_content"
+            android:layout_width="147dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="172dp"
-            android:layout_marginEnd="277dp"
+            android:layout_marginTop="144dp"
+            android:layout_marginEnd="202dp"
             android:layout_marginRight="237dp"
             android:fontFamily="@font/biryani"
+            android:gravity="left"
             android:text="Line 3"
-            android:textColor="@color/fucsia"
+            android:textColor="@color/blanco"
             android:textSize="16sp" />
 
         <ImageView
@@ -101,10 +99,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="302dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="0dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="-1dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="1dp"
             app:fab_addButtonColorNormal="@color/blanco"
             app:fab_addButtonPlusIconColor="@color/fucsia"
             app:fab_addButtonSize="mini">
@@ -135,20 +133,18 @@
 
         <TextView
             android:id="@+id/dias_faltan"
-            android:layout_width="123dp"
-            android:layout_height="133dp"
-            android:layout_alignParentTop="true"
+            android:layout_width="122dp"
+            android:layout_height="122dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="69dp"
-            android:layout_marginEnd="61dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="45dp"
             android:background="@drawable/redondo"
             android:fontFamily="@font/biryani_semibold"
             android:paddingVertical="10.5dp"
             android:paddingLeft="30dp"
             android:text="  15 días"
-            android:textColor="@color/blanco"
+            android:textColor="@color/fucsia"
             android:textSize="30dp">
 
         </TextView>
