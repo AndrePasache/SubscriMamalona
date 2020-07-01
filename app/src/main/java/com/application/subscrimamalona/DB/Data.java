@@ -68,7 +68,7 @@ public class Data implements Serializable{
         this.moneda = moneda;
     }
 
-    public static final String CREATE_TABLA_DATA = "CREATE TABLE data (nombre TEXT, monto TEXT, tipo TEXT, metodo_pago TEXT, moneda TEXT, dias_faltan TEXT)";
+    public static final String CREATE_TABLA_DATA = "CREATE TABLE data (nombre TEXT, monto TEXT, tipo TEXT, dias_faltan TEXT, metodo_pago TEXT, moneda TEXT)";
     public static final String DROP_TABLA_DATA = "DROP TABLE IF EXISTS data";
 
     public static final String TABLA_DATA = "data";
