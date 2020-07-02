@@ -1,5 +1,6 @@
 package com.application.subscrimamalona.Controlador;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.application.subscrimamalona.DB.Conexion;
 import com.application.subscrimamalona.DB.Data;
+import com.application.subscrimamalona.Editar;
 import com.application.subscrimamalona.R;
 
 import java.util.ArrayList;
@@ -50,10 +52,10 @@ public class Pagos extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new CasilleroAdapter.OnItemClickListener(){
-            /*@Override
+            @Override
             public void onItemClick(int position) {
-                ;
-            }*/
+                editItem(position);
+            }
 
             @Override
             public void onDeleteCLick(int position) {
@@ -97,5 +99,27 @@ public class Pagos extends Fragment {
         }
         casillerosList1.remove(position);
         mAdapter.notifyItemRemoved(position);
+    }
+
+    public void editItem(int positon){
+        Intent intent = new Intent(this.getContext(), Editar.class);
+        SQLiteDatabase db = conexion.getReadableDatabase();
+        String[] campos = {Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA};
+
+        Cursor cursor = db.query(Data.TABLA_DATA,campos,null,null,null,null,null);
+        cursor.moveToPosition(positon);
+        String nombre = cursor.getString(0);
+        String monto = cursor.getString(1);
+        String tipo = cursor.getString(2);
+        String dias_faltan = cursor.getString(3);
+        String metodo_pago = cursor.getString(4);
+        String moneda = cursor.getString(5);
+
+        Data a = new Data(nombre,monto,tipo,dias_faltan,metodo_pago,moneda);
+
+        Bundle extras = new Bundle();
+        extras.putSerializable("dataEdit",a);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 }

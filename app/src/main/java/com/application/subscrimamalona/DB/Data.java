@@ -1,5 +1,7 @@
 package com.application.subscrimamalona.DB;
 
+import android.widget.SpinnerAdapter;
+
 import java.io.Serializable;
 
 public class Data implements Serializable{
