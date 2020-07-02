@@ -1,5 +1,6 @@
 package com.application.subscrimamalona.Controlador;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.application.subscrimamalona.DB.Conexion;
 import com.application.subscrimamalona.DB.Data;
+import com.application.subscrimamalona.Editar;
 import com.application.subscrimamalona.R;
 
 import java.util.ArrayList;
@@ -50,10 +52,10 @@ public class Subscripciones extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnItemClickListener(new CasilleroAdapter2.OnItemClickListener(){
-            /*@Override
+            @Override
             public void onItemClick(int position) {
-                ;
-            }*/
+                editItem(position);
+            }
 
             @Override
             public void onDeleteCLick(int position) {
@@ -68,18 +70,19 @@ public class Subscripciones extends Fragment {
 
     public void insertItem(){
         SQLiteDatabase db = conexion.getReadableDatabase();
-        String[] campos = {Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA};
+        String[] campos = {Data.CAMPO_ID, Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA};
 
         Cursor cursor = db.query(Data.TABLA_DATA, campos, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            String nombre = cursor.getString(0);
-            String monto = cursor.getString(1);
-            String tipo = cursor.getString(2);
-            String dias_faltan = cursor.getString(3);
-            String metodo_pago = cursor.getString(4);
-            String moneda = cursor.getString(5);
+            int id = cursor.getInt(0);
+            String nombre = cursor.getString(1);
+            String monto = cursor.getString(2);
+            String tipo = cursor.getString(3);
+            String dias_faltan = cursor.getString(4);
+            String metodo_pago = cursor.getString(5);
+            String moneda = cursor.getString(6);
             if (tipo.equals("Subscripción")) {
-                casillerosList2.add(new CasilleroContent(nombre, monto, dias_faltan, metodo_pago, moneda));
+                casillerosList2.add(new CasilleroContent(id, nombre, monto, dias_faltan, metodo_pago, moneda));
             }
         }
     }
@@ -88,14 +91,48 @@ public class Subscripciones extends Fragment {
         SQLiteDatabase db = conexion.getWritableDatabase();
 
         Cursor cursor = db.query(Data.TABLA_DATA, null, null, null, null, null, null);
+        int id = casillerosList2.get(position).getId();
 
-        if (cursor.moveToPosition(position)) {
-            String rowID = cursor.getString(cursor.getColumnIndex(Data.CAMPO_NOMBRE));
-            db.delete(Data.TABLA_DATA, Data.CAMPO_NOMBRE + "=?", new String[]{rowID});
-            Toast.makeText(this.getContext(), "Se eliminó la subscripción", Toast.LENGTH_SHORT).show();
-            db.close();
+        while (cursor.moveToNext()) {
+            int iD = cursor.getInt(0);
+            if(id==iD) {
+                String rowID = cursor.getString(cursor.getColumnIndex(Data.CAMPO_ID));
+                db.delete(Data.TABLA_DATA, Data.CAMPO_ID + "=?", new String[]{rowID});
+                Toast.makeText(this.getContext(), "Se eliminó la subscripción", Toast.LENGTH_SHORT).show();
+                db.close();
+            }
         }
         casillerosList2.remove(position);
         mAdapter.notifyItemRemoved(position);
+    }
+
+    public void editItem(int positon){
+        Intent intent = new Intent(this.getContext(), Editar.class);
+        SQLiteDatabase db = conexion.getReadableDatabase();
+        String[] campos = {Data.CAMPO_ID,Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA, Data.CAMPO_FECHA_PAGO, Data.CAMPO_RECORDATORIO};
+
+        Cursor cursor = db.query(Data.TABLA_DATA,campos,null,null,null,null,null);
+        int iD = casillerosList2.get(positon).getId();
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            if (id == iD) {
+                String nombre = cursor.getString(1);
+                String monto = cursor.getString(2);
+                String tipo = cursor.getString(3);
+                String dias_faltan = cursor.getString(4);
+                String metodo_pago = cursor.getString(5);
+                String moneda = cursor.getString(6);
+                String fecha_pago = cursor.getString(7);
+                String recordatorio = cursor.getString(8);
+
+                Data a = new Data(id,nombre,monto,tipo,dias_faltan,metodo_pago,moneda,fecha_pago,recordatorio);
+
+                Bundle extras = new Bundle();
+                extras.putSerializable("dataEdit",a);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        }
     }
 }

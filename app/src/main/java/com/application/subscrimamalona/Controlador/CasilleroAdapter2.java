@@ -19,7 +19,7 @@ public class CasilleroAdapter2 extends RecyclerView.Adapter<CasilleroAdapter2.Ca
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
-        //void onItemClick(int position);
+        void onItemClick(int position);
         void onDeleteCLick(int position);
     }
 
@@ -39,6 +39,7 @@ public class CasilleroAdapter2 extends RecyclerView.Adapter<CasilleroAdapter2.Ca
             textView4 = itemView.findViewById(R.id.linea4);
             textView5 = itemView.findViewById(R.id.dias_faltan);
             fbEliminar = itemView.findViewById(R.id.eliminar);
+            fbEditar = itemView.findViewById(R.id.editar);
 
             fbEliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -47,6 +48,17 @@ public class CasilleroAdapter2 extends RecyclerView.Adapter<CasilleroAdapter2.Ca
                         int position = getAdapterPosition();
                         if (position!=RecyclerView.NO_POSITION){
                             listener.onDeleteCLick(position);
+                        }
+                    }
+                }
+            });
+            fbEditar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if (position!=RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
                         }
                     }
                 }

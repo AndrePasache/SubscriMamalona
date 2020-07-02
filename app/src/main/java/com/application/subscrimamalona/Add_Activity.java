@@ -24,10 +24,13 @@ import android.widget.Toast;
 import com.application.subscrimamalona.DB.Conexion;
 import com.application.subscrimamalona.DB.Data;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -40,7 +43,13 @@ public class Add_Activity extends AppCompatActivity {
     Calendar actual = Calendar.getInstance();
     Calendar calendar = Calendar.getInstance();
 
+    Date fechaYhora = new Date();
+    DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+
     private int dia, mes, ano, minutos, hora;
+
+    Random r = new Random();
+    int randomNo = r.nextInt(500+1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +62,6 @@ public class Add_Activity extends AppCompatActivity {
         bhora = (Button)findViewById(R.id.bhora);
         efecha = (EditText)findViewById(R.id.efecha);
         ehora = (EditText)findViewById(R.id.eHora);
-
 
         String[] tipo = {"Subscripción","Pago"};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(tipo));
@@ -101,11 +109,14 @@ public class Add_Activity extends AppCompatActivity {
                         calendar.set(Calendar.MINUTE,m);
 
                         ehora.setText(String.format("%02d:%02d", h, m));
+
                     }
                 },hora,minutos,true);
                 timePickerDialog.show();
             }
         });
+
+        fechaYhora = calendar.getTime();
 
         close = (Button)findViewById(R.id.buttoncross);
         close.setOnClickListener(new View.OnClickListener() {
@@ -159,8 +170,11 @@ public class Add_Activity extends AppCompatActivity {
         String inputTipo = spinner.getSelectedItem().toString();
         String inputMetodo = MetodoPago.getText().toString();
         String inputMoneda = spinner2.getSelectedItem().toString();
+        String inputFechaPago = efecha.getText().toString();
+        String inputRecordatorio = ehora.getText().toString();
 
-        if (inputSubsname.equals("")|| inputMonto.equals("")|| inputMetodo.equals("")|| Periodo.equals("")){
+
+        if (inputSubsname.equals("")|| inputMonto.equals("")|| inputMetodo.equals("")|| inputFechaPago.equals("")|| inputRecordatorio.equals("") ){
             Toast.makeText(this, "Ningún campo debe quedar vacío", Toast.LENGTH_SHORT).show();
         } else {
             Conexion conexion = new Conexion(this);
@@ -175,14 +189,17 @@ public class Add_Activity extends AppCompatActivity {
             }
 
             ContentValues values = new ContentValues();
+            values.put(Data.CAMPO_ID,randomNo);
             values.put(Data.CAMPO_NOMBRE, inputSubsname);
             values.put(Data.CAMPO_MONTO, inputMonto);
             values.put(Data.CAMPO_TIPO, inputTipo);
             values.put(Data.CAMPO_METODO_PAGO, inputMetodo);
             values.put(Data.CAMPO_MONEDA, inputMoneda);
             values.put(Data.CAMPO_DIAS_FALTAN, Periodo);
+            values.put(Data.CAMPO_FECHA_PAGO, inputFechaPago);
+            values.put(Data.CAMPO_RECORDATORIO, inputRecordatorio);
 
-            Long id = db.insert(Data.TABLA_DATA, Data.CAMPO_NOMBRE, values);
+            Long id = db.insert(Data.TABLA_DATA, Data.CAMPO_ID, values);
             db.close();
 
             if (inputTipo.equals("Pago")) {

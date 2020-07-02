@@ -20,6 +20,8 @@ import com.application.subscrimamalona.Editar;
 import com.application.subscrimamalona.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,18 +72,21 @@ public class Pagos extends Fragment {
 
     public void insertItem(){
         SQLiteDatabase db = conexion.getReadableDatabase();
-        String[] campos = {Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA};
+        String[] campos = {Data.CAMPO_ID,Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA, Data.CAMPO_FECHA_PAGO, Data.CAMPO_RECORDATORIO};
 
         Cursor cursor = db.query(Data.TABLA_DATA, campos, null, null, null, null, null);
         while (cursor.moveToNext()){
-            String nombre = cursor.getString(0);
-            String monto = cursor.getString(1);
-            String tipo = cursor.getString(2);
-            String dias_faltan = cursor.getString(3);
-            String metodo_pago = cursor.getString(4);
-            String moneda = cursor.getString(5);
+            int id = cursor.getInt(0);
+            String nombre = cursor.getString(1);
+            String monto = cursor.getString(2);
+            String tipo = cursor.getString(3);
+            String dias_faltan = cursor.getString(4);
+            String metodo_pago = cursor.getString(5);
+            String moneda = cursor.getString(6);
+            //String fecha_pago = cursor.getString(7);
+            //String recordatorio = cursor.getString(8);
             if (tipo.equals("Pago")) {
-                casillerosList1.add(new CasilleroContent(nombre, monto, dias_faltan,metodo_pago,moneda));
+                casillerosList1.add(new CasilleroContent(id, nombre, monto, dias_faltan,metodo_pago,moneda));
             }
         }
     }
@@ -90,12 +95,16 @@ public class Pagos extends Fragment {
         SQLiteDatabase db = conexion.getWritableDatabase();
 
         Cursor cursor = db.query(Data.TABLA_DATA, null, null, null, null, null, null);
+        int id = casillerosList1.get(position).getId();
 
-        if (cursor.moveToPosition(position)) {
-            String rowID = cursor.getString(cursor.getColumnIndex(Data.CAMPO_NOMBRE));
-            db.delete(Data.TABLA_DATA, Data.CAMPO_NOMBRE + "=?", new String[]{rowID});
-            Toast.makeText(this.getContext(), "Se eliminó el pago", Toast.LENGTH_SHORT).show();
-            db.close();
+        while (cursor.moveToNext()){
+            int iD = cursor.getInt(0);
+            if (id == iD){
+                String rowID = cursor.getString(cursor.getColumnIndex(Data.CAMPO_ID));
+                db.delete(Data.TABLA_DATA, Data.CAMPO_ID + "=?", new String[]{rowID});
+                Toast.makeText(this.getContext(), "Se eliminó el pago", Toast.LENGTH_SHORT).show();
+                db.close();
+            }
         }
         casillerosList1.remove(position);
         mAdapter.notifyItemRemoved(position);
@@ -104,22 +113,30 @@ public class Pagos extends Fragment {
     public void editItem(int positon){
         Intent intent = new Intent(this.getContext(), Editar.class);
         SQLiteDatabase db = conexion.getReadableDatabase();
-        String[] campos = {Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA};
+        String[] campos = {Data.CAMPO_ID,Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA, Data.CAMPO_FECHA_PAGO, Data.CAMPO_RECORDATORIO};
 
         Cursor cursor = db.query(Data.TABLA_DATA,campos,null,null,null,null,null);
-        cursor.moveToPosition(positon);
-        String nombre = cursor.getString(0);
-        String monto = cursor.getString(1);
-        String tipo = cursor.getString(2);
-        String dias_faltan = cursor.getString(3);
-        String metodo_pago = cursor.getString(4);
-        String moneda = cursor.getString(5);
+        int iD = casillerosList1.get(positon).getId();
 
-        Data a = new Data(nombre,monto,tipo,dias_faltan,metodo_pago,moneda);
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            if (id == iD) {
+                String nombre = cursor.getString(1);
+                String monto = cursor.getString(2);
+                String tipo = cursor.getString(3);
+                String dias_faltan = cursor.getString(4);
+                String metodo_pago = cursor.getString(5);
+                String moneda = cursor.getString(6);
+                String fecha_pago = cursor.getString(7);
+                String recordatorio = cursor.getString(8);
 
-        Bundle extras = new Bundle();
-        extras.putSerializable("dataEdit",a);
-        intent.putExtras(extras);
-        startActivity(intent);
+                Data a = new Data(id,nombre,monto,tipo,dias_faltan,metodo_pago,moneda,fecha_pago,recordatorio);
+
+                Bundle extras = new Bundle();
+                extras.putSerializable("dataEdit",a);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        }
     }
 }

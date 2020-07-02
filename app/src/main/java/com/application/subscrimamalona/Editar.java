@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -33,12 +36,10 @@ public class Editar extends AppCompatActivity {
     EditText efecha, Subsname, Monto, MetodoPago, ehora;
     String Periodo;
 
-    //Conexion conexion;
-
     Calendar actual = Calendar.getInstance();
     Calendar calendar = Calendar.getInstance();
 
-    private int dia, mes, ano, minutos, hora;
+    private int dia, mes, ano, minutos, hora, id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,23 +62,27 @@ public class Editar extends AppCompatActivity {
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(tipo));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.spinner_est,arrayList);
         spinner.setAdapter(arrayAdapter);
-        /*if (data.getTipo().equals("Subscripción")&&data.getTipo().equals(arrayAdapter)) {
-            spinner.setAdapter(arrayAdapter);
-        }else if(data.getTipo().equals("Pago")&&data.getTipo().equals(arrayAdapter)){
-            spinner.setAdapter(arrayAdapter);
-        }*/
-        //spinner.autofill(data.getTipo());
 
-        /*if(data.getTipo().equals("Subscripción")) {
-            spinner.setTag(data.getTipo());
+        if(data.getTipo().equals("Subscripción")) {
+            int spinnerPosition = 0;
+            spinner.setSelection(spinnerPosition);
         } else if (data.getTipo().equals("Pago")) {
-            spinner.setTag(data.getTipo());
-        }*/
+            int spinnerPosition = 1;
+            spinner.setSelection(spinnerPosition);
+        }
 
         String[] moneda = {"PEN","USD"};
         ArrayList<String> arrayList2 = new ArrayList<>(Arrays.asList(moneda));
         ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(this,R.layout.spinner_est,arrayList2);
         spinner2.setAdapter(arrayAdapter2);
+
+        if(data.getMoneda().equals("PEN")) {
+            int spinnerPosition = 0;
+            spinner2.setSelection(spinnerPosition);
+        } else if (data.getMoneda().equals("USD")) {
+            int spinnerPosition = 1;
+            spinner2.setSelection(spinnerPosition);
+        }
 
         bfecha.setOnClickListener(new View.OnClickListener() {
 
@@ -147,20 +152,23 @@ public class Editar extends AppCompatActivity {
 
                     Toast.makeText(Editar.this, "Recordatorio guardado.", Toast.LENGTH_SHORT).show();
                 }
-                //sendInfo(v);
+                editInfo(v);
             }
         });
 
         Subsname = findViewById(R.id.editText3);
         Monto = findViewById(R.id.editText4);
         MetodoPago = findViewById(R.id.editText5);
+        efecha = findViewById(R.id.fecha2);
+        ehora = findViewById(R.id.eHora22);
 
         Subsname.setText(data.getNombre());
         Monto.setText(data.getMonto());
         MetodoPago.setText(data.getMetodo_pago());
-        //spinner.setSelected(data.getTipo());
-        //spinner2.setAdapter(data.getMoneda());
 
+        efecha.setText(data.getFecha_pago());
+        ehora.setText(data.getRecordatorio());
+        id = data.getId();
 
     }
     private String generateKey(){
@@ -172,6 +180,56 @@ public class Editar extends AppCompatActivity {
                 .putString("titulo",titulo)
                 .putString("detalle",detalle)
                 .putInt("id_noti",id_noti).build();
+    }
+
+    public void editInfo(View view){
+        String inputSubsname = Subsname.getText().toString();
+        String inputMonto = Monto.getText().toString();
+        String inputTipo = spinner.getSelectedItem().toString();
+        String inputMetodo = MetodoPago.getText().toString();
+        String inputMoneda = spinner2.getSelectedItem().toString();
+        String inputFechaPago = efecha.getText().toString();
+        String inputRecordatorio = ehora.getText().toString();
+
+        if (inputSubsname.equals("")|| inputMonto.equals("")|| inputMetodo.equals("")|| inputFechaPago.equals("")|| inputRecordatorio.equals("") ){
+            Toast.makeText(this, "Ningún campo debe quedar vacío", Toast.LENGTH_SHORT).show();
+        } else {
+            Conexion conexion = new Conexion(this);
+            SQLiteDatabase db = conexion.getWritableDatabase();
+
+            if (Periodo.equals("1")){
+                Periodo = Periodo + " día";
+            } else if (Periodo.equals("0")){
+                Periodo = "ES HOY!";
+            } else {
+                Periodo = Periodo + " días";
+            }
+
+            ContentValues values = new ContentValues();
+            values.put(Data.CAMPO_NOMBRE, inputSubsname);
+            values.put(Data.CAMPO_MONTO, inputMonto);
+            values.put(Data.CAMPO_TIPO, inputTipo);
+            values.put(Data.CAMPO_METODO_PAGO, inputMetodo);
+            values.put(Data.CAMPO_MONEDA, inputMoneda);
+            values.put(Data.CAMPO_DIAS_FALTAN, Periodo);
+            values.put(Data.CAMPO_FECHA_PAGO, inputFechaPago);
+            values.put(Data.CAMPO_RECORDATORIO, inputRecordatorio);
+
+
+            String[] datitos = {id+""};
+
+            db.update(Data.TABLA_DATA,values, Data.CAMPO_ID + "=?", datitos);
+            db.close();
+
+            if (inputTipo.equals("Pago")) {
+                Toast.makeText(this, "Se actualizó el pago", Toast.LENGTH_SHORT).show();
+            } else if (inputTipo.equals("Subscripción")) {
+                Toast.makeText(this, "Se actualizó la subscripción", Toast.LENGTH_SHORT).show();
+            }
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void volver(View view){

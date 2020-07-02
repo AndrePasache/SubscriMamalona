@@ -2,8 +2,10 @@ package com.application.subscrimamalona.Controlador;
 
 public class CasilleroContent {
     private String titulo, monto, metodo_pago, dias_restantes, moneda;
+    private int id;
 
-    public CasilleroContent(String titulo, String monto, String dias_restantes, String metodo_pago, String moneda){
+    public CasilleroContent(int id, String titulo, String monto, String dias_restantes, String metodo_pago, String moneda){
+        this.id = id;
         this.titulo = titulo;
         this.monto = monto;
         this.metodo_pago = metodo_pago;
@@ -11,7 +13,7 @@ public class CasilleroContent {
         this.moneda = moneda;
     }
 
-
+    public int getId() {return this.id;}
     public String getTitulo(){
         return this.titulo;
     }
