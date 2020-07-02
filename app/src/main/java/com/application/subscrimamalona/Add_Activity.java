@@ -12,12 +12,15 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -39,6 +42,9 @@ public class Add_Activity extends AppCompatActivity {
     Button bfecha, bhora, close, agregar;
     EditText efecha, Subsname, Monto, MetodoPago, ehora;
     String Periodo;
+    Long tiempoInicial;
+    TextView dias_faltan;
+    CountDownTimer countDownTimer;
 
     Calendar actual = Calendar.getInstance();
     Calendar calendar = Calendar.getInstance();
@@ -127,6 +133,7 @@ public class Add_Activity extends AppCompatActivity {
         });
 
         agregar = (Button)findViewById(R.id.buttonAdd);
+        dias_faltan = (TextView)findViewById(R.id.dias_faltan);
         agregar.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -136,11 +143,34 @@ public class Add_Activity extends AppCompatActivity {
                     String tag = generateKey();
                     Long AlertTime = calendar.getTimeInMillis() - System.currentTimeMillis();
                     int random = (int) (Math.random() * 50 + 1);
-
                     androidx.work.Data data = GuardarData("Susbscrimanager", "¡Hoy es la fecha de tu PAGO/SUSCRIPCIÓN!", random);
                     WorkManagernoti.GuardarNoti(AlertTime, data, tag);
-
                     Periodo = Long.toString(TimeUnit.MILLISECONDS.toDays(AlertTime));
+
+
+                    /*tiempoInicial = AlertTime;
+                    countDownTimer = new CountDownTimer(tiempoInicial,1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            int dias = (int)((millisUntilFinished / 1000) / 86400);
+                            String countDownText = String.format("%2d", dias);
+                            ksjfhkajfh.setText(countDownText);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            askjhksfha.setText(DateUtils.formatElapsedTime(0));
+
+                        }
+                    }
+
+                     */
+
+
+
+
+
+
 
                     Toast.makeText(Add_Activity.this, "Recordatorio guardado.", Toast.LENGTH_SHORT).show();
                 }
@@ -180,13 +210,13 @@ public class Add_Activity extends AppCompatActivity {
             Conexion conexion = new Conexion(this);
             SQLiteDatabase db = conexion.getWritableDatabase();
 
-            if (Periodo.equals("1")){
+            /*if (Periodo.equals("1")){
                 Periodo = Periodo + " día";
             } else if (Periodo.equals("0")){
                 Periodo = "ES HOY!";
             } else {
                 Periodo = Periodo + " días";
-            }
+            }*/
 
             ContentValues values = new ContentValues();
             values.put(Data.CAMPO_ID,randomNo);

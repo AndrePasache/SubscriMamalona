@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
+import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
@@ -24,11 +25,11 @@ public class WorkManagernoti extends Worker {
     }
 
     public static void GuardarNoti(Long duracion, Data data, String tag){
-        OneTimeWorkRequest noti = new OneTimeWorkRequest.Builder(WorkManagernoti.class)
+        PeriodicWorkRequest noti = new PeriodicWorkRequest.Builder(WorkManagernoti.class, 30, TimeUnit.DAYS)
                 .setInitialDelay(duracion, TimeUnit.MILLISECONDS).addTag(tag)
                 .setInputData(data).build();
-        WorkManager instance = WorkManager.getInstance();
-        instance.enqueue(noti);
+        WorkManager.getInstance().enqueue(noti);
+
     }
 
     @NonNull

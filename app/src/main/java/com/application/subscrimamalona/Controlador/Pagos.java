@@ -140,3 +140,8 @@ public class Pagos extends Fragment {
         }
     }
 }
+/* public void removeItem(){
+   SQLiteDatabase db = conexion.getReadableDatabase();
+
+ */
+
