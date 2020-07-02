@@ -41,7 +41,7 @@ public class Add_Activity extends AppCompatActivity {
     Spinner spinner, spinner2;
     Button bfecha, bhora, close, agregar;
     EditText efecha, Subsname, Monto, MetodoPago, ehora;
-    String Periodo;
+    String Periodo, TAG, countDownt;
     Long tiempoInicial;
     TextView dias_faltan;
     CountDownTimer countDownTimer;
@@ -93,7 +93,6 @@ public class Add_Activity extends AppCompatActivity {
                         calendar.set(Calendar.DAY_OF_MONTH, d);
                         calendar.set(Calendar.MONTH, m);
                         calendar.set(Calendar.YEAR, y);
-
                         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
                         String strDate = format.format(calendar.getTime());
                         efecha.setText(strDate);
@@ -146,33 +145,26 @@ public class Add_Activity extends AppCompatActivity {
                     androidx.work.Data data = GuardarData("Susbscrimanager", "¡Hoy es la fecha de tu PAGO/SUSCRIPCIÓN!", random);
                     WorkManagernoti.GuardarNoti(AlertTime, data, tag);
                     Periodo = Long.toString(TimeUnit.MILLISECONDS.toDays(AlertTime));
+                    TAG = tag;
 
 
-                    /*tiempoInicial = AlertTime;
+                    tiempoInicial = AlertTime;
                     countDownTimer = new CountDownTimer(tiempoInicial,1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
                             int dias = (int)((millisUntilFinished / 1000) / 86400);
-                            String countDownText = String.format("%2d", dias);
-                            ksjfhkajfh.setText(countDownText);
+                            countDownt = String.format("%2d", dias);
+                            //ksjfhkajfh.setText(countDownText);
                         }
 
                         @Override
                         public void onFinish() {
-                            askjhksfha.setText(DateUtils.formatElapsedTime(0));
+                            //askjhksfha.setText(DateUtils.formatElapsedTime(0));
 
                         }
-                    }
-
-                     */
+                    }.start();
 
 
-
-
-
-
-
-                    Toast.makeText(Add_Activity.this, "Recordatorio guardado.", Toast.LENGTH_SHORT).show();
                 }
                 sendInfo(v);
             }
@@ -204,6 +196,7 @@ public class Add_Activity extends AppCompatActivity {
         String inputRecordatorio = ehora.getText().toString();
 
 
+
         if (inputSubsname.equals("")|| inputMonto.equals("")|| inputMetodo.equals("")|| inputFechaPago.equals("")|| inputRecordatorio.equals("") ){
             Toast.makeText(this, "Ningún campo debe quedar vacío", Toast.LENGTH_SHORT).show();
         } else {
@@ -228,6 +221,10 @@ public class Add_Activity extends AppCompatActivity {
             values.put(Data.CAMPO_DIAS_FALTAN, Periodo);
             values.put(Data.CAMPO_FECHA_PAGO, inputFechaPago);
             values.put(Data.CAMPO_RECORDATORIO, inputRecordatorio);
+            values.put(Data.CAMPO_TAG, TAG );
+            values.put(Data.CAMPO_COUNT_DOWN, countDownt );
+
+
 
             Long id = db.insert(Data.TABLA_DATA, Data.CAMPO_ID, values);
             db.close();

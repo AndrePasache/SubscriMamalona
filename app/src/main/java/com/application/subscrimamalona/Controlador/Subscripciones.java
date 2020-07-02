@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.WorkManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +75,7 @@ public class Subscripciones extends Fragment {
 
         Cursor cursor = db.query(Data.TABLA_DATA, campos, null, null, null, null, null);
         while (cursor.moveToNext()) {
+
             int id = cursor.getInt(0);
             String nombre = cursor.getString(1);
             String monto = cursor.getString(2);
@@ -109,7 +111,7 @@ public class Subscripciones extends Fragment {
     public void editItem(int positon){
         Intent intent = new Intent(this.getContext(), Editar.class);
         SQLiteDatabase db = conexion.getReadableDatabase();
-        String[] campos = {Data.CAMPO_ID,Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA, Data.CAMPO_FECHA_PAGO, Data.CAMPO_RECORDATORIO};
+        String[] campos = {Data.CAMPO_ID,Data.CAMPO_NOMBRE, Data.CAMPO_MONTO, Data.CAMPO_TIPO, Data.CAMPO_DIAS_FALTAN, Data.CAMPO_METODO_PAGO, Data.CAMPO_MONEDA, Data.CAMPO_FECHA_PAGO, Data.CAMPO_RECORDATORIO,Data.CAMPO_TAG};
 
         Cursor cursor = db.query(Data.TABLA_DATA,campos,null,null,null,null,null);
         int iD = casillerosList2.get(positon).getId();
@@ -125,8 +127,11 @@ public class Subscripciones extends Fragment {
                 String moneda = cursor.getString(6);
                 String fecha_pago = cursor.getString(7);
                 String recordatorio = cursor.getString(8);
+                String tag = cursor.getString(9);
 
-                Data a = new Data(id,nombre,monto,tipo,dias_faltan,metodo_pago,moneda,fecha_pago,recordatorio);
+                eliminarNoti(tag);
+
+                Data a = new Data(id,nombre,monto,tipo,dias_faltan,metodo_pago,moneda,fecha_pago,recordatorio,tag);
 
                 Bundle extras = new Bundle();
                 extras.putSerializable("dataEdit",a);
@@ -134,5 +139,8 @@ public class Subscripciones extends Fragment {
                 startActivity(intent);
             }
         }
+    }
+    public void eliminarNoti(String tag){
+        WorkManager.getInstance(this.getContext()).cancelAllWorkByTag(tag);
     }
 }

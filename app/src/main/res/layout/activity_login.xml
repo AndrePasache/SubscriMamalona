@@ -18,21 +18,6 @@
         app:layout_constraintVertical_bias="0.115"
         app:srcCompat="@drawable/subcri2" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="161dp"
-        android:layout_height="17dp"
-        android:fontFamily="@font/biryani"
-        android:text="¿Olvidaste tu contraseña?"
-        android:textColor="@color/vino"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.792"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.624" />
-
     <EditText
         android:id="@+id/eUsuario"
         android:layout_width="307dp"

@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,10 +24,13 @@ import android.widget.Toast;
 import com.application.subscrimamalona.DB.Conexion;
 import com.application.subscrimamalona.DB.Data;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -35,6 +39,10 @@ public class Editar extends AppCompatActivity {
     Button bfecha, bhora, close, guardar;
     EditText efecha, Subsname, Monto, MetodoPago, ehora;
     String Periodo;
+    Long tiempoInicial;
+    CountDownTimer countDownTimer;
+    String countDownt, TAG;
+
 
     Calendar actual = Calendar.getInstance();
     Calendar calendar = Calendar.getInstance();
@@ -47,7 +55,7 @@ public class Editar extends AppCompatActivity {
         setContentView(R.layout.activity_editar);
 
         Bundle extras = getIntent().getExtras();
-        Data data = (Data)extras.getSerializable("dataEdit");
+        final Data data = (Data)extras.getSerializable("dataEdit");
 
         spinner = findViewById(R.id.spinner);
         spinner2 = findViewById(R.id.spinner2);
@@ -135,25 +143,80 @@ public class Editar extends AppCompatActivity {
         });
 
         guardar = (Button)findViewById(R.id.buttonAdd);
+        final Conexion conexion = new Conexion(this);
         guardar.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
+
             public void onClick(View v) {
-                if (!ehora.getText().toString().equals("")||!efecha.getText().toString().equals("")) {
+
+                String fecha = data.getFecha_pago();
+                Date fechaActual = new Date();
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy",Locale.ENGLISH);
+                Date fechaElegida = null;
+                try {
+                    fechaElegida = formato.parse(fecha);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                long resta = fechaElegida.getTime() - fechaActual.getTime();
+
+                if (!fechaActual.equals(fechaElegida)) {
+                    String tag = generateKey();
+                    TAG = tag;
+                    int random = (int) (Math.random() * 50 + 1);
+                    androidx.work.Data data = GuardarData("Susbscrimanager", "¡Hoy es la fecha de tu PAGO/SUSCRIPCIÓN!", random);
+                    WorkManagernoti.GuardarNoti(resta, data, tag);
+                    tiempoInicial = resta;
+                    countDownTimer = new CountDownTimer(tiempoInicial, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            int dias = (int) ((millisUntilFinished / 1000) / 86400);
+                            countDownt = String.format("%2d", dias);
+                            //ksjfhkajfh.setText(countDownText);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            //askjhksfha.setText(DateUtils.formatElapsedTime(0));
+
+                        }
+                    }.start();
+
+                } else{
 
                     String tag = generateKey();
+                    TAG = tag;
                     Long AlertTime = calendar.getTimeInMillis() - System.currentTimeMillis();
                     int random = (int) (Math.random() * 50 + 1);
-
                     androidx.work.Data data = GuardarData("Susbscrimanager", "¡Hoy es la fecha de tu PAGO/SUSCRIPCIÓN!", random);
                     WorkManagernoti.GuardarNoti(AlertTime, data, tag);
 
                     Periodo = Long.toString(TimeUnit.MILLISECONDS.toDays(AlertTime));
 
-                    Toast.makeText(Editar.this, "Recordatorio guardado.", Toast.LENGTH_SHORT).show();
+                    tiempoInicial = AlertTime;
+                    countDownTimer = new CountDownTimer(tiempoInicial, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            int dias = (int) ((millisUntilFinished / 1000) / 86400);
+                            countDownt = String.format("%2d", dias);
+                            //ksjfhkajfh.setText(countDownText);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            //askjhksfha.setText(DateUtils.formatElapsedTime(0));
+
+                        }
+                    };
                 }
-                editInfo(v);
-            }
+                    editInfo(v);
+                }
+
+
+
+
         });
 
         Subsname = findViewById(R.id.editText3);
@@ -214,6 +277,8 @@ public class Editar extends AppCompatActivity {
             values.put(Data.CAMPO_DIAS_FALTAN, Periodo);
             values.put(Data.CAMPO_FECHA_PAGO, inputFechaPago);
             values.put(Data.CAMPO_RECORDATORIO, inputRecordatorio);
+            values.put(Data.CAMPO_TAG, TAG );
+            values.put(Data.CAMPO_COUNT_DOWN, countDownt );
 
 
             String[] datitos = {id+""};

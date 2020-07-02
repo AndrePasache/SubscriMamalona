@@ -21,8 +21,11 @@ public class Data implements Serializable{
     private String metodo_pago;
     private String moneda;
     private Date fechaYhora;
+    private String tag;
+    private String countDown;
 
-    public Data(int id, String nombre, String monto, String tipo, String dias_faltan, String metodo_pago, String moneda, String fecha_pago, String recordatorio) {
+
+    public Data(int id, String nombre, String monto, String tipo, String dias_faltan, String metodo_pago, String moneda, String fecha_pago, String recordatorio, String tag) {
         this.id = id;
         this.nombre = nombre;
         this.monto = monto;
@@ -32,7 +35,11 @@ public class Data implements Serializable{
         this.moneda = moneda;
         this.fecha_pago = fecha_pago;
         this.recordatorio = recordatorio;
+        this.tag = tag;
+        this.countDown = countDown;
+
     }
+
 
     public int getId() {
         return id;
@@ -106,7 +113,23 @@ public class Data implements Serializable{
         this.recordatorio = recordatorio;
     }
 
-    public static final String CREATE_TABLA_DATA = "CREATE TABLE data (id INTEGER, nombre TEXT, monto TEXT, tipo TEXT, dias_faltan TEXT, metodo_pago TEXT, moneda TEXT, fecha_pago DATE, recordatorio DATETIME)";
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getCountDown() {
+        return countDown;
+    }
+
+    public void setCountDown(String countDown) {
+        this.countDown = countDown;
+    }
+
+    public static final String CREATE_TABLA_DATA = "CREATE TABLE data (id INTEGER, nombre TEXT, monto TEXT, tipo TEXT, dias_faltan TEXT, metodo_pago TEXT, moneda TEXT, fecha_pago DATE, recordatorio DATETIME, tag TEXT, countDown TEXT)";
     public static final String DROP_TABLA_DATA = "DROP TABLE IF EXISTS data";
 
     public static final String TABLA_DATA = "data";
@@ -119,4 +142,9 @@ public class Data implements Serializable{
     public static final String CAMPO_DIAS_FALTAN = "dias_faltan";
     public static final String CAMPO_FECHA_PAGO = "fecha_pago";
     public static final String CAMPO_RECORDATORIO = "recordatorio";
+    public static final String CAMPO_TAG = "tag";
+    public static final String CAMPO_COUNT_DOWN = "countDown";
+
+
+
 }
