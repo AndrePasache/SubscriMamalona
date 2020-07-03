@@ -186,7 +186,7 @@
         app:layout_constraintVertical_bias="0.554" />
 
     <EditText
-        android:id="@+id/fecha2"
+        android:id="@+id/efecha"
         android:layout_width="178dp"
         android:layout_height="51dp"
         android:ems="10"
@@ -228,7 +228,7 @@
         app:srcCompat="@drawable/editar"/>
 
     <EditText
-        android:id="@+id/eHora22"
+        android:id="@+id/eHora"
         android:layout_width="155dp"
         android:layout_height="50dp"
         android:ems="10"
