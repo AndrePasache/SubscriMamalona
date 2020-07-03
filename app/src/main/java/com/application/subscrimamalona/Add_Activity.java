@@ -203,13 +203,13 @@ public class Add_Activity extends AppCompatActivity {
             Conexion conexion = new Conexion(this);
             SQLiteDatabase db = conexion.getWritableDatabase();
 
-            /*if (Periodo.equals("1")){
+            if (Periodo.equals("1")){
                 Periodo = Periodo + " día";
             } else if (Periodo.equals("0")){
                 Periodo = "ES HOY!";
             } else {
                 Periodo = Periodo + " días";
-            }*/
+            }
 
             ContentValues values = new ContentValues();
             values.put(Data.CAMPO_ID,randomNo);

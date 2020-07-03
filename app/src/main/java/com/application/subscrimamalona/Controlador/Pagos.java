@@ -88,7 +88,7 @@ public class Pagos extends Fragment {
             String countDown = cursor.getString(7);
 
             if (tipo.equals("Pago")) {
-                casillerosList1.add(new CasilleroContent(id, nombre, monto, countDown,metodo_pago,moneda));
+                casillerosList1.add(new CasilleroContent(id, nombre, monto, dias_faltan,metodo_pago,moneda));
             }
         }
     }
